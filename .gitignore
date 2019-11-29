@@ -1,0 +1,31 @@
+# dependencies
+/client/quiz/node_modules
+/client/quiz/build
+/client/quiz/build/*
+
+# testing
+/client/quiz/coverage
+
+# misc
+/client/quiz/.DS_Store
+/client/quiz/.env.local
+/client/quiz/.env.development.local
+/client/quiz/.env.test.local
+/client/quiz/.env.production.local
+
+/client/quiz/npm-debug.log*
+/client/quiz/yarn-debug.log*
+/client/quiz/yarn-error.log*
+
+.idea/
+magento/
+
+/client/quiz/package-lock.json
+
+/server/app/code/Magestore/Webpos/build
+/server/app/code/Magestore/Webpos/build/*
+
+# eclipse
+/server/app/code/Magestore/.buildpath
+/server/app/code/Magestore/.project
+/server/app/code/Magestore/.settings/
