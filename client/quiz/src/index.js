@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import App from "./App";
 import Events from './view/component/events'
 import Information from "./view/component/information/Information";
+import Question from "./view/component/question/Question";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -23,7 +24,8 @@ ReactDOM.render(
             <div>
                 <PrivateRoute component={App}/>
                 <Switch>
-                    <PrivateRoute path="/" component={Information}/>
+                    <PrivateRoute path="/" exact component={Information}/>
+                    <PrivateRoute path="/question" exact component={Question}/>
                 </Switch>
                 <Events/>
             </div>

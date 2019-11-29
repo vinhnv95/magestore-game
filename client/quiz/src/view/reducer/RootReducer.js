@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 import Extension from "../../framework/Extension";
 import {reducer as internet} from 'react-redux-internet-connection';
+import information from "./InformationReducer";
 
 /**
  * Init core reducer
@@ -9,7 +10,8 @@ import {reducer as internet} from 'react-redux-internet-connection';
  */
 function coreReducer() {
     return combineReducers({
-        internet
+        internet,
+        information
     })
 }
 

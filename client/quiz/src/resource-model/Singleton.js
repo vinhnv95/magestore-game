@@ -1,11 +1,11 @@
-import { } from '../data/omc/index';
+import { OmcInformation } from '../data/omc/index';
 import Config from '../config/Config';
 import DataResourceFactory from "../framework/factory/DataResourceFactory";
 import {fire} from "../event-bus";
 import ObjectManager from "../framework/ObjectManager";
 
 let resources = {
-
+    'OmcInformation': OmcInformation
 };
 
 export class Singleton{
