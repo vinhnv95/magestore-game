@@ -9,6 +9,8 @@ import App from "./App";
 import Events from './view/component/events'
 import Information from "./view/component/information/Information";
 import Question from "./view/component/question/Question";
+import Success from './view/component/result/Success';
+import Fail from './view/component/result/Fail';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -26,6 +28,8 @@ ReactDOM.render(
                 <Switch>
                     <PrivateRoute path="/" exact component={Information}/>
                     <PrivateRoute path="/question" exact component={Question}/>
+                    <PrivateRoute path="/success" exact component={Success}/>
+                    <PrivateRoute path="/fail" exact component={Fail}/>
                 </Switch>
                 <Events/>
             </div>

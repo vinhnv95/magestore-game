@@ -20,5 +20,9 @@ export default class InformationResourceModel extends AbstractResourceModel {
     submitInfo(student) {
         return this.getResourceOnline().submitInfo(student);
     }
+
+    submitAnswer(student, isCorrectAnswer) {
+        return this.getResourceOnline().submitAnswer(student, isCorrectAnswer);
+    }
 }
 

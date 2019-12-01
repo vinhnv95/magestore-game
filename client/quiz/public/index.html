@@ -46,6 +46,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Magestore Quizzes</title>
+    <script src="data/questions.js"></script>
     <script type="text/javascript">
         var url = window.location.href;
         var basename;
@@ -60,7 +61,8 @@
                 basename: basename,
                 db: 'IndexedDb',
                 mode: "online",
-                session: ''
+                session: '',
+                questions: questions
             }
         }
     </script>

@@ -4,6 +4,7 @@ import CoreContainer from "../../../framework/container/CoreContainer";
 import ContainerFactory from "../../../framework/factory/ContainerFactory";
 import {CoreComponent} from "../../../framework/component";
 import InformationAction from "../../action/InformationAction";
+import QuestionConstant from '../../constant/QuestionConstant';
 
 export class Information extends CoreComponent {
     static className = 'Information';
@@ -15,13 +16,16 @@ export class Information extends CoreComponent {
      */
     constructor(props) {
         super(props);
+        if (props.student) {
+            this.props.history.replace('/question');
+        }
         this.state = {
             student: {
                 academicYear: "",
                 dateOfBirth: "",
                 department: "",
                 email: "",
-                level: "1",
+                level: QuestionConstant.LEVEL_BEGINER,
                 name: ""
             },
             isMissingData : false
@@ -136,10 +140,14 @@ export class Information extends CoreComponent {
                         </div>
                         <div className="form-group">
                             <label>Bạn muốn thử thách ở mức câu hỏi: <i>độ khủng của các món quà sẽ tăng dần theo các cấp câu hỏi</i></label>
-                            <select id="level" name="level" className="form-control" onChange={(e) => this.handleInputChange(e)}>
-                                <option value="1">Beginer</option>
-                                <option value="2">Junior</option>
-                                <option value="3">Expert</option>
+                            <select id="level" 
+                                    name="level" 
+                                    className="form-control" 
+                                    onChange={(e) => this.handleInputChange(e)}
+                                    defaultValue={this.state.student.level}>
+                                <option value={QuestionConstant.LEVEL_BEGINER}>Beginer</option>
+                                <option value={QuestionConstant.LEVEL_JUNIOR}>Junior</option>
+                                <option value={QuestionConstant.LEVEL_EXPERT}>Expert</option>
                             </select>
                         </div>
                         <div className="form-group">

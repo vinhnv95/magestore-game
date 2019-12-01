@@ -3,6 +3,9 @@ import ComponentFactory from "../../../framework/factory/ComponentFactory";
 import CoreContainer from "../../../framework/container/CoreContainer";
 import ContainerFactory from "../../../framework/factory/ContainerFactory";
 import {CoreComponent} from "../../../framework/component";
+import QuestionHelper from '../../../helper/QuestionHelper';
+import QuestionConstant from '../../constant/QuestionConstant';
+import QuestionAction from '../../action/QuestionAction';
 
 export class Question extends CoreComponent {
     static className = 'Question';
@@ -14,25 +17,30 @@ export class Question extends CoreComponent {
      */
     constructor(props) {
         super(props);
+        if (!props.student) {
+            props.history.replace('/');
+        }
+        let level = props.student && props.student.level ? props.student.level : QuestionConstant.LEVEL_BEGINER;
         this.state = {
-            question: {
-                question: 'advadvd',
-                answers: {
-                    '1': 'dvv',
-                    '2': 'dvdv',
-                    '3': 'dabvbk'
-                },
-                correctAnswer: '1'
-            },
+            question: QuestionHelper.getRandomQuestion(level),
             userAnswer: null
         };
     }
 
-    submit() {
-        console.log(this.state.userAnswer)
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.student && nextProps.student.is_answered) {
+            let path = nextProps.student.gift_barcode ? '/success': '/fail';
+            this.props.history.replace(path);
+        }
     }
 
-    selectAnswer(x) {
+    submit() {
+        if (!this.state.userAnswer) return;
+        let isCorrectAnswer = this.state.userAnswer === this.state.question.correctAnswer;
+        this.props.actions.submitAnswer(isCorrectAnswer);
+    }
+
+    changeAnswer(x) {
         this.setState({
             userAnswer: x
         })
@@ -47,19 +55,25 @@ export class Question extends CoreComponent {
                             <label>{this.state.question.question}</label>
                             <div>
                                 {
-                                    Object.keys(this.state.question.answers).map(key => {
-                                        let value = this.state.question.answers[key]
-                                        return (
-                                            <Fragment key={key}>
-                                                <input type="radio"
-                                                       name="answer"
-                                                       value={key}
-                                                       checked={this.state.userAnswer === key}
-                                                       onChange={() => this.selectAnswer(key)}
-                                                /> {value}<br/>
-                                            </Fragment>
-                                        );
-                                    })
+                                    this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
+                                        Object.keys(this.state.question.answers).map(key => {
+                                            let value = this.state.question.answers[key]
+                                            return (
+                                                <Fragment key={key}>
+                                                    <input type="radio"
+                                                        name="answer"
+                                                        value={key}
+                                                        checked={this.state.userAnswer === key}
+                                                        onChange={() => this.changeAnswer(key)}
+                                                    /> {value}<br/>
+                                                </Fragment>
+                                            );
+                                        })
+                                        :
+                                        <input type="text"
+                                            className="form-control"
+                                            onChange={(e) => this.changeAnswer(e.target.value)}
+                                        />
                                 }
                             </div>
                         </div>
@@ -80,8 +94,8 @@ export class QuestionContainer extends CoreContainer {
     static className = 'QuestionContainer';
 
     static mapState(state) {
-        let {student} = state.core.information;
-        return {student};
+        let {loading, student} = state.core.information;
+        return {loading, student};
     }
 
     /**
@@ -93,7 +107,7 @@ export class QuestionContainer extends CoreContainer {
     static mapDispatch(dispatch) {
         return {
             actions: {
-
+                submitAnswer: (isCorrectAnswer) => dispatch(QuestionAction.submitAnswer(isCorrectAnswer))
             }
         }
     }

@@ -120,7 +120,6 @@ export default class OmcAbstract {
      * @returns {Promise}
      */
     put(url, params) {
-        let self = this;
         return new Promise((resolve, reject) => {
             fetch(url,
                 {
@@ -151,7 +150,6 @@ export default class OmcAbstract {
      * @returns {Promise}
      */
     delete(url, params) {
-        let self = this;
         return new Promise((resolve, reject) => {
             fetch(url,
                 {

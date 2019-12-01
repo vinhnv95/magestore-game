@@ -3,6 +3,7 @@ import {combineEpics} from 'redux-observable';
 import InformationConstant from "../constant/InformationConstant";
 import InformationService from "../../service/information/InformationService";
 import InformationAction from "../action/InformationAction";
+import LocalStorageHelper from '../../helper/LocalStorageHelper';
 
 /**
  * click login action
@@ -12,8 +13,8 @@ import InformationAction from "../action/InformationAction";
 const submitInfo = action$ => action$.ofType(InformationConstant.SUBMIT_INFO)
     .mergeMap(action => Observable.from(InformationService.submitInfo(action.student))
         .map((response) => {
-            console.log(response)
-            return InformationAction.submitInfoResult(response);
+            LocalStorageHelper.setStudent(response.student);
+            return InformationAction.submitInfoResult(response.student);
         }).catch(error => Observable.empty())
     );
 
