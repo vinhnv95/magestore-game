@@ -49,6 +49,7 @@ class StudentRepository implements StudentRepositoryInterface
     {
         try {
             $this->resource->save($student);
+            return $student;
         } catch (\Exception $e) {
             throw new \Magento\Framework\Exception\CouldNotSaveException(__('Unable to save student'));
         }
