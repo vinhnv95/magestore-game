@@ -20,6 +20,7 @@ interface StudentInterface
     const FACULTY = 'faculty';
     const IS_ANSWER = 'is_answer';
     const BARCODE = 'barcode';
+    const LEVEL = 'level';
 
     /**
      * Get Id
@@ -155,4 +156,19 @@ interface StudentInterface
      * @return $this
      */
     public function setBarcode($barcode);
+
+    /**
+     * Get Level
+     *
+     * @return string|null
+     */
+    public function getLevel();
+
+    /**
+     * Set Level
+     *
+     * @param string|null $level
+     * @return $this
+     */
+    public function setLevel($level);
 }

@@ -210,4 +210,25 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     {
         return $this->setData(self::BARCODE, $barcode);
     }
+
+    /**
+     * Get Level
+     *
+     * @return string|null
+     */
+    public function getLevel()
+    {
+        return $this->getData(self::LEVEL);
+    }
+
+    /**
+     * Set Level
+     *
+     * @param string|null $level
+     * @return $this
+     */
+    public function setLevel($level)
+    {
+        return $this->setData(self::LEVEL, $level);
+    }
 }
