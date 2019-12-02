@@ -15,8 +15,8 @@ const submitAnswer = (action$, store) => action$.ofType(QuestionConstant.SUBMIT_
         let student = store.getState().core.information.student;
         return Observable.from(InformationService.submitAnswer(student, action.isCorrectAnswer))
             .map((response) => {
-                LocalStorageHelper.setStudent(response.student);
-                return InformationAction.submitInfoResult(response.student);
+                LocalStorageHelper.setStudent(response);
+                return InformationAction.submitInfoResult(response);
             }).catch(error => Observable.empty())
     });
 

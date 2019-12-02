@@ -22,12 +22,13 @@ export class Information extends CoreComponent {
         }
         this.state = {
             student: {
-                academicYear: "",
-                dateOfBirth: "",
-                department: "",
+                name: "",
                 email: "",
-                level: QuestionConstant.LEVEL_BEGINER,
-                name: ""
+                phone: "",
+                birthday: "",
+                grade: "",
+                faculty: "",
+                level: QuestionConstant.LEVEL_BEGINER
             },
             isMissingData: false,
             isWrongEmail: false
@@ -120,34 +121,45 @@ export class Information extends CoreComponent {
                                 />
                             </div>
                             <div className="form-group">
+                                <label><span>Số điện thoại</span></label>
+                                <input id="phone"
+                                       name="phone"
+                                       className="form-control"
+                                       placeholder="0123456789"
+                                       ref="phone"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
                                 <label><span>Ngày tháng năm sinh</span></label>
-                                <input id="dateOfBirth"
-                                       name="dateOfBirth"
+                                <input id="birthday"
+                                       name="birthday"
                                        className="form-control"
                                        placeholder='02/12/1998'
-                                       ref="dateOfBirth"
+                                       ref="birthday"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />
                             </div>
                             <div className="form-group">
                                 <label><span>Bạn thuộc khóa</span></label>
-                                <input id="academicYear"
-                                       name="academicYear"
+                                <input id="grade"
+                                       name="grade"
                                        className="form-control"
                                        placeholder='K61'
-                                       ref="academicYear"
+                                       ref="grade"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />
                             </div>
                             <div className="form-group">
                                 <label><span>Bạn ở khoa</span></label>
-                                <input id="department"
-                                       name="department"
+                                <input id="faculty"
+                                       name="faculty"
                                        className="form-control"
                                        placeholder='Công nghệ thông tin'
-                                       ref="department"
+                                       ref="faculty"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />

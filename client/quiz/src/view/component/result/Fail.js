@@ -9,7 +9,7 @@ export class Fail extends CoreComponent {
 
     constructor(props) {
         super(props);
-        if (!this.props.student || !this.props.student.is_answered) {
+        if (!this.props.student || !this.props.student.is_answer) {
             this.props.history.replace('/');
         }
     }
