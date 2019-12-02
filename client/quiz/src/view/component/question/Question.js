@@ -22,21 +22,80 @@ export class Question extends CoreComponent {
         }
         let level = props.student && props.student.level ? props.student.level : QuestionConstant.LEVEL_BEGINER;
         this.state = {
-            question: QuestionHelper.getRandomQuestion(level),
+            question: {
+                "question": null,
+                "answerType": "select",
+                "answers": {},
+                "correctAnswer": null
+            },
             userAnswer: null
         };
+        this.getRandomQuestion(level);
+    }
+
+    /**
+     *
+     * @param level
+     * @returns {Promise<*>}
+     */
+    async getRandomQuestion(level) {
+        let response = await QuestionHelper.getRandomQuestion(level);
+        let self = this;
+        if (response.ok) {
+            response.json().then(async function (data) {
+                let questionList = [];
+                for (let i = 1; i < 2; i++) {
+                    let answerType = "text";
+                    if (typeof data.values[i][1] !== 'undefined' && data.values[i][1] === "select") {
+                        answerType = "select";
+                    }
+                    let choice = {};
+                    let choiceIndex = 1;
+                    let correctAnswerText = data.values[i][3];
+                    let correctAnswer = 1;
+                    for (let index = 4; index < data.values[i].length; index++) {
+                        choice[choiceIndex] = data.values[i][index];
+                        if (correctAnswerText === choice[choiceIndex]) {
+                            correctAnswer = choiceIndex;
+                        }
+                        choiceIndex++;
+                    }
+                    if (answerType === "select") {
+                        questionList.push({
+                            "question": data.values[i][2],
+                            "answerType": answerType,
+                            "answers": choice,
+                            "correctAnswer": correctAnswer
+                        });
+                    } else {
+                        questionList.push({
+                            "question": data.values[i][2],
+                            "answerType": answerType,
+                            "answers": null,
+                            "correctAnswer": correctAnswerText
+                        });
+                    }
+
+                    let index = Math.floor(Math.random() * questionList.length);
+                    self.setState({
+                        question: questionList[index],
+                        userAnswer: null
+                    });
+                }
+            });
+        }
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps.student && nextProps.student.is_answered) {
-            let path = nextProps.student.gift_barcode ? '/success': '/fail';
+            let path = nextProps.student.gift_barcode ? '/success' : '/fail';
             this.props.history.replace(path);
         }
     }
 
     submit() {
         if (!this.state.userAnswer) return;
-        let isCorrectAnswer = this.state.userAnswer === this.state.question.correctAnswer;
+        let isCorrectAnswer = parseInt(this.state.userAnswer) === this.state.question.correctAnswer;
         this.props.actions.submitAnswer(isCorrectAnswer);
     }
 
@@ -82,7 +141,8 @@ export class Question extends CoreComponent {
                                 <button type="button"
                                         className="btn btn-default btn-primary"
                                         ref="submitButton"
-                                        onClick={() => this.submit()}>CHẮC CHẮN</button>
+                                        onClick={() => this.submit()}>CHẮC CHẮN
+                                </button>
                             </div>
                         </div>
                     </form>
