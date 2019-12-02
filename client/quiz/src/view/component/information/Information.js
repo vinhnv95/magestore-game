@@ -28,7 +28,8 @@ export class Information extends CoreComponent {
                 level: QuestionConstant.LEVEL_BEGINER,
                 name: ""
             },
-            isMissingData : false
+            isMissingData : false,
+            logoUrl: "https://www.titechglobal.com/wp-content/uploads/2017/08/Magestore-1024x247.png"
         };
     }
 
@@ -72,92 +73,96 @@ export class Information extends CoreComponent {
     template() {
         return (
             <Fragment>
-                <form className="wrapper-info" onSubmit={e => e.preventDefault()}>
-                    <div className="form-info">
-                        <strong className="logo">
-                            <a href=""><img src={this.state.logoUrl} alt=""/></a>
-                        </strong>
-                        <h2 className="page-title">CHƠI GAME LIỀN TAY, RINH NGAY QUÀ KHỦNG</h2>
-                        {
-                            this.state.isMissingData ?
-                                <div className="alert alert-danger">Xin hãy điền đủ tất cả thông tin</div>
-                                : null
-                        }
-                        <div className="form-group group-username">
-                            <label><span>Họ và tên</span></label>
-                            <input id="name" name="name"
-                                   type="text"
-                                   className="form-control"
-                                   placeholder='Họ và tên'
-                                   ref="name"
-                                   autoComplete="on"
-                                   onChange={(e) => this.handleInputChange(e)}
-                            />
+                <div className="container">
+                    <form className="wrapper-info" onSubmit={e => e.preventDefault()}>
+                        <div className="form-info">
+                            <div className="form-info text-center">
+                                <strong className="logo text-center">
+                                    <a href=""><img width={'204.8px'} height={'49.4px'} src={this.state.logoUrl} alt=""/></a>
+                                </strong>
+                            </div>
+                            <h2 className="page-title text-center">CHƠI GAME LIỀN TAY, RINH NGAY QUÀ KHỦNG</h2>
+                            {
+                                this.state.isMissingData ?
+                                    <div className="alert alert-danger">Xin hãy điền đủ tất cả thông tin</div>
+                                    : null
+                            }
+                            <div className="form-group group-username">
+                                <label><span>Họ và tên</span></label>
+                                <input id="name" name="name"
+                                       type="text"
+                                       className="form-control"
+                                       placeholder='Họ và tên'
+                                       ref="name"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Email</span></label>
+                                <input id="email"
+                                       name="email"
+                                       className="form-control"
+                                       placeholder='Email'
+                                       ref="email"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Ngày tháng năm sinh</span></label>
+                                <input id="dateOfBirth"
+                                       name="dateOfBirth"
+                                       className="form-control"
+                                       placeholder='02/12/1998'
+                                       ref="dateOfBirth"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Bạn thuộc khóa</span></label>
+                                <input id="academicYear"
+                                       name="academicYear"
+                                       className="form-control"
+                                       placeholder='K61'
+                                       ref="academicYear"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Bạn ở khoa</span></label>
+                                <input id="department"
+                                       name="department"
+                                       className="form-control"
+                                       placeholder='Công nghệ thông tin'
+                                       ref="department"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Bạn muốn thử thách ở mức câu hỏi: <i>độ khủng của các món quà sẽ tăng dần theo các cấp câu hỏi</i></label>
+                                <select id="level"
+                                        name="level"
+                                        className="form-control"
+                                        onChange={(e) => this.handleInputChange(e)}
+                                        defaultValue={this.state.student.level}>
+                                    <option value={QuestionConstant.LEVEL_BEGINER}>Beginer</option>
+                                    <option value={QuestionConstant.LEVEL_JUNIOR}>Junior</option>
+                                    <option value={QuestionConstant.LEVEL_EXPERT}>Expert</option>
+                                </select>
+                            </div>
+                            <div className="form-group text-center">
+                                <button type="button"
+                                        className="btn btn-default btn-primary"
+                                        ref="submitButton"
+                                        onClick={() => this.submit()}>Let's play</button>
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label><span>Email</span></label>
-                            <input id="email"
-                                   name="email"
-                                   className="form-control"
-                                   placeholder='Email'
-                                   ref="email"
-                                   autoComplete="on"
-                                   onChange={(e) => this.handleInputChange(e)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label><span>Ngày tháng năm sinh</span></label>
-                            <input id="dateOfBirth"
-                                   name="dateOfBirth"
-                                   className="form-control"
-                                   placeholder='02/12/1998'
-                                   ref="dateOfBirth"
-                                   autoComplete="on"
-                                   onChange={(e) => this.handleInputChange(e)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label><span>Bạn thuộc khóa</span></label>
-                            <input id="academicYear"
-                                   name="academicYear"
-                                   className="form-control"
-                                   placeholder='K61'
-                                   ref="academicYear"
-                                   autoComplete="on"
-                                   onChange={(e) => this.handleInputChange(e)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label><span>Bạn ở khoa</span></label>
-                            <input id="department"
-                                   name="department"
-                                   className="form-control"
-                                   placeholder='Công nghệ thông tin'
-                                   ref="department"
-                                   autoComplete="on"
-                                   onChange={(e) => this.handleInputChange(e)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Bạn muốn thử thách ở mức câu hỏi: <i>độ khủng của các món quà sẽ tăng dần theo các cấp câu hỏi</i></label>
-                            <select id="level" 
-                                    name="level" 
-                                    className="form-control" 
-                                    onChange={(e) => this.handleInputChange(e)}
-                                    defaultValue={this.state.student.level}>
-                                <option value={QuestionConstant.LEVEL_BEGINER}>Beginer</option>
-                                <option value={QuestionConstant.LEVEL_JUNIOR}>Junior</option>
-                                <option value={QuestionConstant.LEVEL_EXPERT}>Expert</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <button type="button"
-                                    className="btn btn-default btn-primary"
-                                    ref="submitButton"
-                                    onClick={() => this.submit()}>Let's play</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </Fragment>
         );
     }

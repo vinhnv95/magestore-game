@@ -49,42 +49,44 @@ export class Question extends CoreComponent {
     template() {
         return (
             <Fragment>
-                <form className="wrapper-info" onSubmit={e => e.preventDefault()}>
-                    <div className="form-info">
-                        <div className="form-group">
-                            <label>{this.state.question.question}</label>
-                            <div>
-                                {
-                                    this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
-                                        Object.keys(this.state.question.answers).map(key => {
-                                            let value = this.state.question.answers[key]
-                                            return (
-                                                <Fragment key={key}>
-                                                    <input type="radio"
-                                                        name="answer"
-                                                        value={key}
-                                                        checked={this.state.userAnswer === key}
-                                                        onChange={() => this.changeAnswer(key)}
-                                                    /> {value}<br/>
-                                                </Fragment>
-                                            );
-                                        })
-                                        :
-                                        <input type="text"
-                                            className="form-control"
-                                            onChange={(e) => this.changeAnswer(e.target.value)}
-                                        />
-                                }
+                <div className="container">
+                    <form className="wrapper-info" onSubmit={e => e.preventDefault()}>
+                        <div className="form-info">
+                            <div className="form-group">
+                                <label>{this.state.question.question}</label>
+                                <div>
+                                    {
+                                        this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
+                                            Object.keys(this.state.question.answers).map(key => {
+                                                let value = this.state.question.answers[key]
+                                                return (
+                                                    <Fragment key={key}>
+                                                        <input type="radio"
+                                                               name="answer"
+                                                               value={key}
+                                                               checked={this.state.userAnswer === key}
+                                                               onChange={() => this.changeAnswer(key)}
+                                                        /> {value}<br/>
+                                                    </Fragment>
+                                                );
+                                            })
+                                            :
+                                            <input type="text"
+                                                   className="form-control"
+                                                   onChange={(e) => this.changeAnswer(e.target.value)}
+                                            />
+                                    }
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <button type="button"
+                                        className="btn btn-default btn-primary"
+                                        ref="submitButton"
+                                        onClick={() => this.submit()}>CHẮC CHẮN</button>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <button type="button"
-                                    className="btn btn-default btn-primary"
-                                    ref="submitButton"
-                                    onClick={() => this.submit()}>CHẮC CHẮN</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </Fragment>
         );
     }
