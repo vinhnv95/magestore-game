@@ -8,6 +8,7 @@ import QuestionConstant from '../../constant/QuestionConstant';
 
 export class Information extends CoreComponent {
     static className = 'Information';
+    regexEmail= /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     /**
      * constructor
@@ -28,7 +29,8 @@ export class Information extends CoreComponent {
                 level: QuestionConstant.LEVEL_BEGINER,
                 name: ""
             },
-            isMissingData : false,
+            isMissingData: false,
+            isWrongEmail: false,
             logoUrl: "https://www.titechglobal.com/wp-content/uploads/2017/08/Magestore-1024x247.png"
         };
     }
@@ -61,12 +63,21 @@ export class Information extends CoreComponent {
         return !isMissingData;
     }
 
+    validateEmail(email) {
+        return email.length && this.regexEmail.test(email);
+    }
+
     submit() {
-        if (this.validate(this.state.student)) {
-            this.setState({isMissingData: false});
+        if (this.validate(this.state.student) && this.validateEmail(this.state.student.email)) {
+            this.setState({isMissingData: false, isWrongEmail: false});
             this.props.actions.submitInfo(this.state.student);
         } else {
-            this.setState({isMissingData: true});
+            if (!this.validate(this.state.student)) {
+                this.setState({isMissingData: true});
+            }
+            if (!this.validateEmail(this.state.student.email)) {
+                this.setState({isWrongEmail: true});
+            }
         }
     }
 

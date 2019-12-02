@@ -17,7 +17,9 @@ export class Fail extends CoreComponent {
     template() {
         return (
             <Fragment>
-                <h1>Fail</h1>
+                <h2>Tiếc quá, sai rồi bạn ơi!</h2>
+                <img src="src/images/cry-icon-12.jpg"/>
+                <h2>Chúc bạn may mắn lần sau (nếu có)!</h2>
             </Fragment>
         );
     }
