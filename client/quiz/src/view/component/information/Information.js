@@ -8,6 +8,7 @@ import QuestionConstant from '../../constant/QuestionConstant';
 
 export class Information extends CoreComponent {
     static className = 'Information';
+    regexEmail= /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     /**
      * constructor
@@ -28,7 +29,8 @@ export class Information extends CoreComponent {
                 level: QuestionConstant.LEVEL_BEGINER,
                 name: ""
             },
-            isMissingData : false
+            isMissingData: false,
+            isWrongEmail: false
         };
     }
 
@@ -60,12 +62,21 @@ export class Information extends CoreComponent {
         return !isMissingData;
     }
 
+    validateEmail(email) {
+        return email.length && this.regexEmail.test(email);
+    }
+
     submit() {
-        if (this.validate(this.state.student)) {
-            this.setState({isMissingData: false});
+        if (this.validate(this.state.student) && this.validateEmail(this.state.student.email)) {
+            this.setState({isMissingData: false, isWrongEmail: false});
             this.props.actions.submitInfo(this.state.student);
         } else {
-            this.setState({isMissingData: true});
+            if (!this.validate(this.state.student)) {
+                this.setState({isMissingData: true});
+            }
+            if (!this.validateEmail(this.state.student.email)) {
+                this.setState({isWrongEmail: true});
+            }
         }
     }
 
@@ -81,6 +92,11 @@ export class Information extends CoreComponent {
                         {
                             this.state.isMissingData ?
                                 <div className="alert alert-danger">Xin hãy điền đủ tất cả thông tin</div>
+                                : null
+                        }
+                        {
+                            this.state.isWrongEmail ?
+                                <div className="alert alert-danger">Email không đúng</div>
                                 : null
                         }
                         <div className="form-group group-username">
@@ -140,9 +156,9 @@ export class Information extends CoreComponent {
                         </div>
                         <div className="form-group">
                             <label>Bạn muốn thử thách ở mức câu hỏi: <i>độ khủng của các món quà sẽ tăng dần theo các cấp câu hỏi</i></label>
-                            <select id="level" 
-                                    name="level" 
-                                    className="form-control" 
+                            <select id="level"
+                                    name="level"
+                                    className="form-control"
                                     onChange={(e) => this.handleInputChange(e)}
                                     defaultValue={this.state.student.level}>
                                 <option value={QuestionConstant.LEVEL_BEGINER}>Beginer</option>
