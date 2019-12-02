@@ -20,6 +20,10 @@ export class Question extends CoreComponent {
         if (!props.student) {
             props.history.replace('/');
         }
+        if (props.student && props.student.is_answered) {
+            let path = props.student.gift_barcode ? '/success' : '/fail';
+            this.props.history.replace(path);
+        }
         let level = props.student && props.student.level ? props.student.level : QuestionConstant.LEVEL_BEGINER;
         this.state = {
             question: {
