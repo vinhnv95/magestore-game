@@ -95,7 +95,11 @@ export class Question extends CoreComponent {
 
     submit() {
         if (!this.state.userAnswer) return;
-        let isCorrectAnswer = parseInt(this.state.userAnswer, 10) === this.state.question.correctAnswer;
+        let answer = this.state.userAnswer;
+        if (this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT) {
+            answer = Number(answer);
+        }
+        let isCorrectAnswer = answer === this.state.question.correctAnswer;
         this.props.actions.submitAnswer(isCorrectAnswer);
     }
 
