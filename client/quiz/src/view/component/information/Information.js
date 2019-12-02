@@ -30,8 +30,7 @@ export class Information extends CoreComponent {
                 name: ""
             },
             isMissingData: false,
-            isWrongEmail: false,
-            logoUrl: "https://www.titechglobal.com/wp-content/uploads/2017/08/Magestore-1024x247.png"
+            isWrongEmail: false
         };
     }
 
@@ -89,7 +88,7 @@ export class Information extends CoreComponent {
                         <div className="form-info">
                             <div className="form-info text-center">
                                 <strong className="logo text-center">
-                                    <a href=""><img width={'204.8px'} height={'49.4px'} src={this.state.logoUrl} alt=""/></a>
+                                    <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                                 </strong>
                             </div>
                             <h2 className="page-title text-center">CHƠI GAME LIỀN TAY, RINH NGAY QUÀ KHỦNG</h2>
@@ -183,8 +182,8 @@ export class InformationContainer extends CoreContainer {
     static className = 'InformationContainer';
 
     static mapState(state) {
-        let {loading, student} = state.core.information;
-        return {loading, student};
+        let {loading, student, logoUrl} = state.core.information;
+        return {loading, student, logoUrl};
     }
 
     /**

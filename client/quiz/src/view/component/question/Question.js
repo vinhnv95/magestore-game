@@ -119,13 +119,18 @@ export class Question extends CoreComponent {
                 <div className="container">
                     <form className="wrapper-info" onSubmit={e => e.preventDefault()}>
                         <div className="form-info">
+                            <div className="form-info text-center">
+                                <strong className="logo text-center">
+                                    <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
+                                </strong>
+                            </div>
                             <div className="form-group">
                                 <label>{this.state.question.question}</label>
                                 <div>
                                     {
                                         this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
                                             Object.keys(this.state.question.answers).map(key => {
-                                                let value = this.state.question.answers[key]
+                                                let value = this.state.question.answers[key];
                                                 return (
                                                     <Fragment key={key}>
                                                         <input type="radio"
@@ -164,8 +169,8 @@ export class QuestionContainer extends CoreContainer {
     static className = 'QuestionContainer';
 
     static mapState(state) {
-        let {loading, student} = state.core.information;
-        return {loading, student};
+        let {loading, student, logoUrl} = state.core.information;
+        return {loading, student, logoUrl};
     }
 
     /**

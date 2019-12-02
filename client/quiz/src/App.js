@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {style} from "react-toastify";
 import "moment/min/locales";
+import "./view/style/css/App.css";
 
 style({
     zIndex: 10001,
@@ -22,6 +23,12 @@ class App extends Component {
                 <div>
                     <ReactReduxInternetConnection/>
                     {children}
+                    {
+                        this.props.loading ?
+                            <div className="loading">Loading&#8230;</div>
+                            :
+                            null
+                    }
                 </div>
             </Fragment>
         );
@@ -34,7 +41,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => {
-    return {};
+    let {loading, student, logoUrl} = state.core.information;
+    return {loading, student, logoUrl};
 };
 
 const mapDispatchToProps = dispatch => ({
