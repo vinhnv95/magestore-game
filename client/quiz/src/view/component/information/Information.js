@@ -91,7 +91,7 @@ export class Information extends CoreComponent {
                                     <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                                 </strong>
                             </div>
-                            <h2 className="page-title text-center">CHƠI GAME LIỀN TAY, RINH NGAY QUÀ KHỦNG</h2>
+                            <h3 className="page-title text-center">CHƠI GAME LIỀN TAY, RINH NGAY QUÀ KHỦNG</h3>
                             {
                                 this.state.isMissingData ?
                                     <div className="alert alert-danger">Xin hãy điền đủ tất cả thông tin</div>
@@ -166,7 +166,7 @@ export class Information extends CoreComponent {
                             </div>
                             <div className="form-group text-center">
                                 <button type="button"
-                                        className="btn btn-default btn-primary"
+                                        className="btn btn-default btn-warning button-submit"
                                         ref="submitButton"
                                         onClick={() => this.submit()}>Let's play</button>
                             </div>

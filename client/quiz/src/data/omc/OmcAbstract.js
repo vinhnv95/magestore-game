@@ -2,7 +2,7 @@ import deepmerge from "../../framework/Merge";
 import Config from "../../config/Config"
 
 export default class OmcAbstract {
-    store_code = "";
+    store_code = "default";
     store_url = "rest/" + this.store_code;
 
     /**
@@ -13,7 +13,7 @@ export default class OmcAbstract {
         if (process.env.NODE_ENV !== 'production') {
             return process.env.REACT_APP_POS_URL;
         }
-        return this.getUrlFromBrowser();
+        return this.getUrlFromBrowser() + this.store_url;
     }
 
 

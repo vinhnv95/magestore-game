@@ -23,10 +23,10 @@ export class Success extends CoreComponent {
                     <strong className="logo text-center">
                         <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                     </strong>
-                    <h2>{this.props.student.name} - Email: {this.props.student.email}</h2>
-                    <h2>Chúc mừng bạn, đúng rồi nè!</h2>
+                    <h4>{this.props.student.name} - Email: {this.props.student.email}</h4>
+                    <h4>Chúc mừng bạn, đúng rồi nè!</h4>
                     <Barcode value={this.props.student.gift_barcode} />
-                    <h2>Hãy mang barcode này đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h2>
+                    <h4>Hãy mang barcode này đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h4>
                 </div>
             </Fragment>
         );
