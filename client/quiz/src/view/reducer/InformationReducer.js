@@ -4,7 +4,8 @@ import QuestionConstant from "../constant/QuestionConstant";
 
 const  initialState = {
     loading: false,
-    student: LocalStorageHelper.getStudent()
+    student: LocalStorageHelper.getStudent(),
+    logoUrl: "https://www.titechglobal.com/wp-content/uploads/2017/08/Magestore-1024x247.png"
 };
 /**
  * receive action from User Action

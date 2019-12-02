@@ -17,10 +17,15 @@ export class Fail extends CoreComponent {
     template() {
         return (
             <Fragment>
-                <h2>{this.props.student.name} - Email: {this.props.student.email}</h2>
-                <h2>Tiếc quá, sai rồi bạn ơi!</h2>
-                <img src="src/images/cry-icon-12.jpg"/>
-                <h2>Chúc bạn may mắn lần sau (nếu có)!</h2>
+                <div className="container text-center">
+                    <strong className="logo text-center">
+                        <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
+                    </strong>
+                    <h2>{this.props.student.name} - Email: {this.props.student.email}</h2>
+                    <h2>Tiếc quá, sai rồi bạn ơi!</h2>
+                    <img src="src/images/cry-icon-12.jpg" alt=""/>
+                    <h2>Chúc bạn may mắn lần sau (nếu có)!</h2>
+                </div>
             </Fragment>
         );
     }
@@ -30,8 +35,8 @@ export class FailContainer extends CoreContainer {
     static className = 'FailContainer';
 
     static mapState(state) {
-        let {student} = state.core.information;
-        return {student};
+        let {loading, student, logoUrl} = state.core.information;
+        return {loading, student, logoUrl};
     }
 
     /**
