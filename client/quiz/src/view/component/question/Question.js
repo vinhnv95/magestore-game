@@ -152,7 +152,7 @@ export class Question extends CoreComponent {
                             </div>
                             <div className="form-group">
                                 <button type="button"
-                                        className="btn btn-default btn-primary"
+                                        className="btn btn-default btn-warning button-submit"
                                         ref="submitButton"
                                         onClick={() => this.submit()}>CHẮC CHẮN
                                 </button>

@@ -166,7 +166,7 @@ export class Information extends CoreComponent {
                             </div>
                             <div className="form-group text-center">
                                 <button type="button"
-                                        className="btn btn-default btn-primary"
+                                        className="btn btn-default btn-warning button-submit"
                                         ref="submitButton"
                                         onClick={() => this.submit()}>Let's play</button>
                             </div>

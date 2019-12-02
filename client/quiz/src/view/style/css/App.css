@@ -119,3 +119,13 @@
         transform: rotate(360deg);
     }
 }
+.button-submit {
+    width: 100%;
+    background-color: #ff7837;
+}
+.button-submit:hover, .button-submit:focus {
+    background-color: #ff5818;
+}
+.container {
+    padding-top: 15px;
+}
