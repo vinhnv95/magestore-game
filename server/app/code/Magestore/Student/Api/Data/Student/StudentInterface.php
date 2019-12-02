@@ -18,6 +18,8 @@ interface StudentInterface
     const BIRTHDAY = 'birthday';
     const GRADE = 'grade';
     const FACULTY = 'faculty';
+    const IS_ANSWER = 'is_answer';
+    const BARCODE = 'barcode';
 
     /**
      * Get Id
@@ -123,4 +125,34 @@ interface StudentInterface
      * @return $this
      */
     public function setFaculty($faculty);
+
+    /**
+     * Get Is Answer
+     *
+     * @return string|null
+     */
+    public function getIsAnswer();
+
+    /**
+     * Set Is Answer
+     *
+     * @param boolean|null $isAnswer
+     * @return $this
+     */
+    public function setIsAnswer($isAnswer);
+
+    /**
+     * Get Barcode
+     *
+     * @return string|null
+     */
+    public function getBarcode();
+
+    /**
+     * Set Barcode
+     *
+     * @param string|null $barcode
+     * @return $this
+     */
+    public function setBarcode($barcode);
 }
