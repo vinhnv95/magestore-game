@@ -16,6 +16,8 @@
         <column xsi:type="varchar" name="birthday" nullable="false" length="32" default="" comment="Birthday"/>
         <column xsi:type="varchar" name="grade" nullable="false" length="32" default="" comment="Grade"/>
         <column xsi:type="varchar" name="faculty" nullable="false" length="32" default="" comment="Faculty"/>
+        <column xsi:type="boolean" name="is_answer" nullable="false" default="false" comment="Is Answer"/>
+        <column xsi:type="varchar" name="barcode" nullable="false" default="" comment="Barcode"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

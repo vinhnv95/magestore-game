@@ -168,4 +168,46 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     {
         return $this->setData(self::FACULTY, $faculty);
     }
+
+    /**
+     * Get Is Answer
+     *
+     * @return string|null
+     */
+    public function getIsAnswer()
+    {
+        return $this->getData(self::IS_ANSWER);
+    }
+
+    /**
+     * Set Is Answer
+     *
+     * @param boolean|null $isAnswer
+     * @return $this
+     */
+    public function setIsAnswer($isAnswer)
+    {
+        return $this->setData(self::IS_ANSWER, $isAnswer);
+    }
+
+    /**
+     * Get Barcode
+     *
+     * @return string|null
+     */
+    public function getBarcode()
+    {
+        return $this->getData(self::BARCODE);
+    }
+
+    /**
+     * Set Barcode
+     *
+     * @param string|null $barcode
+     * @return $this
+     */
+    public function setBarcode($barcode)
+    {
+        return $this->setData(self::BARCODE, $barcode);
+    }
 }
