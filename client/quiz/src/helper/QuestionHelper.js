@@ -1,6 +1,4 @@
 import QuestionConstant from "../view/constant/QuestionConstant";
-import Config from "../config/Config";
-
 export default {
 
     async getRandomQuestion(level = QuestionConstant.LEVEL_BEGINER) {
