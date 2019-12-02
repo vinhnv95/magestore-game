@@ -9,6 +9,7 @@
     "moment": "^2.22.1",
     "prop-types": "^15.6.1",
     "react": "16.8.6",
+    "react-barcode": "^1.4.0",
     "react-bootstrap": "^0.32.3",
     "react-datetime-bootstrap": "^1.4.5",
     "react-device-detect": "^1.5.9",

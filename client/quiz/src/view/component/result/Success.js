@@ -3,6 +3,7 @@ import ComponentFactory from "../../../framework/factory/ComponentFactory";
 import CoreContainer from "../../../framework/container/CoreContainer";
 import ContainerFactory from "../../../framework/factory/ContainerFactory";
 import {CoreComponent} from "../../../framework/component";
+import Barcode from "react-barcode";
 
 export class Success extends CoreComponent {
     static className = 'Success';
@@ -18,8 +19,9 @@ export class Success extends CoreComponent {
         if (!this.props.student || !this.props.student.gift_barcode) return null;
         return (
             <Fragment>
-                <h1>Success</h1>
-                <p>{this.props.student.gift_barcode}</p>
+                <h2>Chúc mừng bạn, đúng rồi nè!</h2>
+                <Barcode value={this.props.student.gift_barcode} />
+                <h2>Hãy mang barcode này đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h2>
             </Fragment>
         );
     }
