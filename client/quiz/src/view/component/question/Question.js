@@ -100,7 +100,7 @@ export class Question extends CoreComponent {
 
     changeAnswer(x) {
         this.setState({
-            userAnswer: x
+            userAnswer: x.toString().trim()
         })
     }
 
