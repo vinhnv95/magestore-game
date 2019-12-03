@@ -94,7 +94,7 @@ export class Question extends CoreComponent {
 
     submit() {
         if (!this.state.userAnswer) return;
-        let isCorrectAnswer = this.state.userAnswer === this.state.question.correctAnswer;
+        let isCorrectAnswer = this.state.userAnswer.toString().toLocaleLowerCase() === this.state.question.correctAnswer.toString().toLocaleLowerCase();
         this.props.actions.submitAnswer(isCorrectAnswer);
     }
 
