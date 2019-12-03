@@ -13,4 +13,11 @@
             <resource ref="anonymous" />
         </resources>
     </route>
+
+    <route url="/V1/student/submit" method="POST">
+        <service class="Magestore\Student\Api\Student\StudentRepositoryInterface" method="submit"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
 </routes>

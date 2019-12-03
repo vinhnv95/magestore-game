@@ -7,6 +7,7 @@
 
 namespace Magestore\Student\Api\Student;
 use Magestore\Student\Api\Data\Student\StudentInterface;
+use Magestore\Student\Api\Data\Student\AnswerInterface;
 
 /**
  * Interface StudentInterface
@@ -38,4 +39,12 @@ interface StudentRepositoryInterface {
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getByEmail($email);
+
+    /**
+     * Submit
+     *
+     * @param AnswerInterface $answer
+     * @return StudentInterface
+     */
+    public function submit($answer);
 }

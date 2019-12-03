@@ -11,7 +11,7 @@ namespace Magestore\Student\Api\Data\Student;
 interface StudentInterface
 {
 
-    const ID = 'ID';
+    const ID = 'id';
     const NAME = 'name';
     const EMAIL = 'email';
     const PHONE = 'phone';

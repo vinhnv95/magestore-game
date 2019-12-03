@@ -7,6 +7,7 @@
 
 namespace Magestore\Student\Model\Student;
 
+use Magestore\Student\Api\Data\Student\AnswerInterface;
 use Magestore\Student\Api\Student\StudentRepositoryInterface;
 use Magestore\Student\Api\Data\Student\StudentInterface as StudentInterface;
 use Magestore\Student\Model\ResourceModel\Student as ResourceModel;
@@ -27,17 +28,24 @@ class StudentRepository implements StudentRepositoryInterface
     protected $resource;
 
     /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
+    protected $collectionFactory;
+
+    /**
      * StudentRepository constructor.
      * @param StudentInterface $model
      * @param ResourceModel $resource
      */
     public function __construct(
         StudentInterface $model,
-        ResourceModel $resource
+        ResourceModel $resource,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory
     )
     {
         $this->model = $model;
         $this->resource = $resource;
+        $this->collectionFactory = $collectionFactory;
     }
 
     /**
@@ -51,7 +59,7 @@ class StudentRepository implements StudentRepositoryInterface
             if ($student->getEmail()) {
                 $studentModel = $this->getByEmail($student->getEmail());
                 if ($studentModel->getId()) {
-                    $student->setId($studentModel->getId());
+                    return $studentModel;
                 }
             }
             $this->resource->save($student);
@@ -93,5 +101,45 @@ class StudentRepository implements StudentRepositoryInterface
         $model = $this->model;
         $this->resource->load($model, $email, 'email');
         return $model;
+    }
+
+    /**
+     * Submit
+     *
+     * @param AnswerInterface $answer
+     * @return StudentInterface
+     */
+    public function submit($answer)
+    {
+        $studentId = $answer->getId();
+        $isAnswerCorrect = $answer->getIsCorrectAnswer();
+        if ($studentId) {
+            $student = $this->getById($studentId);
+        }
+        if ($isAnswerCorrect) {
+            if ($student->getId()) {
+                $level = $student->getLevel();
+                if ($level === 'beginer') {
+                    $product = $this->collectionFactory->create()
+                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
+                        ->getFirstItem();
+                } else if ($level === 'junior') {
+                    $product = $this->collectionFactory->create()
+                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
+                        ->getFirstItem();
+                } else if ($level === 'expert') {
+                    $product = $this->collectionFactory->create()
+                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
+                        ->getFirstItem();
+                }
+                $barcode = $product->getSku();
+                $student->setBarcode($barcode);
+            }
+        } else {
+            $student->setBarcode('');
+        }
+        $student->setIsAnswer(true);
+        $student->save();
+        return $student;
     }
 }
