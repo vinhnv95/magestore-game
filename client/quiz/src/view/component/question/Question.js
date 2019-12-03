@@ -75,7 +75,6 @@ export class Question extends CoreComponent {
                             "correctAnswer": correctAnswer
                         });
                     }
-
                     let index = Math.floor(Math.random() * questionList.length);
                     self.setState({
                         question: questionList[index],
