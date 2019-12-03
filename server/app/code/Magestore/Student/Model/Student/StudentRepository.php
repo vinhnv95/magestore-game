@@ -120,14 +120,17 @@ class StudentRepository implements StudentRepositoryInterface
             $level = $student->getLevel();
             if ($level === 'beginer') {
                 $product = $this->collectionFactory->create()
+                    ->addFieldToFilter('type_id', 'simple')
                     ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
                     ->getFirstItem();
             } else if ($level === 'junior') {
                 $product = $this->collectionFactory->create()
+                    ->addFieldToFilter('type_id', 'simple')
                     ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
                     ->getFirstItem();
             } else if ($level === 'expert') {
                 $product = $this->collectionFactory->create()
+                    ->addFieldToFilter('type_id', 'simple')
                     ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
                     ->getFirstItem();
             }
