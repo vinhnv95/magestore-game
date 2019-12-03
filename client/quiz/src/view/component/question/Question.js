@@ -55,13 +55,9 @@ export class Question extends CoreComponent {
                     }
                     let choice = {};
                     let choiceIndex = 1;
-                    let correctAnswerText = data.values[i][3];
-                    let correctAnswer = 1;
+                    let correctAnswer = data.values[i][3];
                     for (let index = 4; index < data.values[i].length; index++) {
                         choice[choiceIndex] = data.values[i][index];
-                        if (correctAnswerText === choice[choiceIndex]) {
-                            correctAnswer = choiceIndex;
-                        }
                         choiceIndex++;
                     }
                     if (answerType === "select") {
@@ -76,7 +72,7 @@ export class Question extends CoreComponent {
                             "question": data.values[i][2],
                             "answerType": answerType,
                             "answers": null,
-                            "correctAnswer": correctAnswerText
+                            "correctAnswer": correctAnswer
                         });
                     }
 
@@ -99,11 +95,7 @@ export class Question extends CoreComponent {
 
     submit() {
         if (!this.state.userAnswer) return;
-        let answer = this.state.userAnswer;
-        if (this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT) {
-            answer = Number(answer);
-        }
-        let isCorrectAnswer = answer === this.state.question.correctAnswer;
+        let isCorrectAnswer = this.state.userAnswer === this.state.question.correctAnswer;
         this.props.actions.submitAnswer(isCorrectAnswer);
     }
 
@@ -135,9 +127,9 @@ export class Question extends CoreComponent {
                                                     <Fragment key={key}>
                                                         <input type="radio"
                                                                name="answer"
-                                                               value={key}
-                                                               checked={this.state.userAnswer === key}
-                                                               onChange={() => this.changeAnswer(key)}
+                                                               value={value}
+                                                               checked={this.state.userAnswer === value}
+                                                               onChange={() => this.changeAnswer(value)}
                                                         /> {value}<br/>
                                                     </Fragment>
                                                 );
