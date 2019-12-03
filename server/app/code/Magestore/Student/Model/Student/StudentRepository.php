@@ -117,24 +117,22 @@ class StudentRepository implements StudentRepositoryInterface
             $student = $this->getById($studentId);
         }
         if ($isAnswerCorrect) {
-            if ($student->getId()) {
-                $level = $student->getLevel();
-                if ($level === 'beginer') {
-                    $product = $this->collectionFactory->create()
-                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
-                        ->getFirstItem();
-                } else if ($level === 'junior') {
-                    $product = $this->collectionFactory->create()
-                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
-                        ->getFirstItem();
-                } else if ($level === 'expert') {
-                    $product = $this->collectionFactory->create()
-                        ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
-                        ->getFirstItem();
-                }
-                $barcode = $product->getSku();
-                $student->setBarcode($barcode);
+            $level = $student->getLevel();
+            if ($level === 'beginer') {
+                $product = $this->collectionFactory->create()
+                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
+                    ->getFirstItem();
+            } else if ($level === 'junior') {
+                $product = $this->collectionFactory->create()
+                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
+                    ->getFirstItem();
+            } else if ($level === 'expert') {
+                $product = $this->collectionFactory->create()
+                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
+                    ->getFirstItem();
             }
+            $barcode = $product->getSku();
+            $student->setBarcode($barcode);
         } else {
             $student->setBarcode('');
         }
