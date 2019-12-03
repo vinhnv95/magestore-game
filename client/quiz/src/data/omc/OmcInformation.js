@@ -1,9 +1,9 @@
 import OmcAbstract from "./OmcAbstract";
 
-export default class OmcUser extends OmcAbstract {
-    static className = 'OmcUser';
+export default class OmcInformation extends OmcAbstract {
+    static className = 'OmcInformation';
 
-    submit_info_api = "";
+    submit_info_api = "/V1/student";
 
     /**
      *
@@ -15,9 +15,6 @@ export default class OmcUser extends OmcAbstract {
             student: student
         };
 
-        student.id = 1;
-        return new Promise((resolve) => setTimeout(() => resolve({student}), 1000));
-
         let url = this.getBaseUrl() + this.submit_info_api;
         return this.post(url, params);
     }
@@ -28,9 +25,9 @@ export default class OmcUser extends OmcAbstract {
             isCorrectAnswer: isCorrectAnswer
         };
 
-        if (isCorrectAnswer) student.gift_barcode = '01314415';
-        student.is_answered = true;
-        return new Promise((resolve) => setTimeout(() => resolve({student}), 200));
+        if (isCorrectAnswer) student.barcode = '01314415';
+        student.is_answer = true;
+        return new Promise((resolve) => setTimeout(() => resolve(student), 200));
 
         let url = this.getBaseUrl() + this.submit_info_api;
         return this.post(url, params);

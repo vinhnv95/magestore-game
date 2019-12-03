@@ -20,8 +20,8 @@ export class Question extends CoreComponent {
         if (!props.student) {
             props.history.replace('/');
         }
-        if (props.student && props.student.is_answered) {
-            let path = props.student.gift_barcode ? '/success' : '/fail';
+        if (props.student && props.student.is_answer) {
+            let path = props.student.barcode ? '/success' : '/fail';
             this.props.history.replace(path);
         }
         let level = props.student && props.student.level ? props.student.level : QuestionConstant.LEVEL_BEGINER;
@@ -91,8 +91,8 @@ export class Question extends CoreComponent {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.student && nextProps.student.is_answered) {
-            let path = nextProps.student.gift_barcode ? '/success' : '/fail';
+        if (nextProps.student && nextProps.student.is_answer) {
+            let path = nextProps.student.barcode ? '/success' : '/fail';
             this.props.history.replace(path);
         }
     }

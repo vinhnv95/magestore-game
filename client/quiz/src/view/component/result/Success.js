@@ -10,13 +10,13 @@ export class Success extends CoreComponent {
 
     constructor(props) {
         super(props);
-        if (!this.props.student || !this.props.student.gift_barcode) {
+        if (!this.props.student || !this.props.student.barcode) {
             this.props.history.replace('/');
         }
     }
 
     template() {
-        if (!this.props.student || !this.props.student.gift_barcode) return null;
+        if (!this.props.student || !this.props.student.barcode) return null;
         return (
             <Fragment>
                 <div className="container text-center">
@@ -25,7 +25,7 @@ export class Success extends CoreComponent {
                     </strong>
                     <h4>{this.props.student.name} - Email: {this.props.student.email}</h4>
                     <h4>Chúc mừng bạn, đúng rồi nè!</h4>
-                    <Barcode value={this.props.student.gift_barcode} />
+                    <Barcode value={this.props.student.barcode} />
                     <h4>Hãy mang barcode này đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h4>
                 </div>
             </Fragment>

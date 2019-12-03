@@ -13,8 +13,8 @@ import LocalStorageHelper from '../../helper/LocalStorageHelper';
 const submitInfo = action$ => action$.ofType(InformationConstant.SUBMIT_INFO)
     .mergeMap(action => Observable.from(InformationService.submitInfo(action.student))
         .map((response) => {
-            LocalStorageHelper.setStudent(response.student);
-            return InformationAction.submitInfoResult(response.student);
+            LocalStorageHelper.setStudent(response);
+            return InformationAction.submitInfoResult(response);
         }).catch(error => Observable.empty())
     );
 

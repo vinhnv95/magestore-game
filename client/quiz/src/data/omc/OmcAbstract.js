@@ -11,7 +11,7 @@ export default class OmcAbstract {
      */
     getBaseUrl() {
         if (process.env.NODE_ENV !== 'production') {
-            return process.env.REACT_APP_POS_URL;
+            return process.env.REACT_APP_POS_URL + this.store_url;
         }
         return this.getUrlFromBrowser() + this.store_url;
     }
