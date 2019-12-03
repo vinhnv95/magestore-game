@@ -40,15 +40,15 @@ class Level extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
                     'value' => self::NONE
                 ),
                 array(
-                    'label' => __('Level 1'),
+                    'label' => __('Beginer'),
                     'value' => self::LEVEL_1
                 ),
                 array(
-                    'label' => __('Level 2'),
+                    'label' => __('Junior'),
                     'value' => self::LEVEL_2
                 ),
                 array(
-                    'label' => __('Level 3'),
+                    'label' => __('Senior'),
                     'value' => self::LEVEL_3
                 )
             );
