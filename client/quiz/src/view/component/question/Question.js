@@ -55,7 +55,7 @@ export class Question extends CoreComponent {
                     }
                     let choice = {};
                     let choiceIndex = 1;
-                    let correctAnswer = data.values[i][3];
+                    let correctAnswer = data.values[i][3].toString().trim();
                     for (let index = 4; index < data.values[i].length; index++) {
                         choice[choiceIndex] = data.values[i][index].toString().trim();
                         choiceIndex++;
