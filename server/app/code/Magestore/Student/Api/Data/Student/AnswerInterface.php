@@ -30,14 +30,14 @@ interface AnswerInterface
     /**
      * Get Name
      *
-     * @return string|null
+     * @return boolean|null
      */
     public function getIsCorrectAnswer();
 
     /**
      * Set isCorrectAnswer
      *
-     * @param string|null $isCorrectAnswer
+     * @param boolean|null $isCorrectAnswer
      * @return $this
      */
     public function setIsCorrectAnswer($isCorrectAnswer);

@@ -36,7 +36,7 @@ class Answer extends \Magento\Framework\DataObject implements AnswerInterface
     /**
      * Get Name
      *
-     * @return string|null
+     * @return boolean|null
      */
     public function getIsCorrectAnswer()
     {
@@ -46,7 +46,7 @@ class Answer extends \Magento\Framework\DataObject implements AnswerInterface
     /**
      * Set isCorrectAnswer
      *
-     * @param string|null $isCorrectAnswer
+     * @param boolean|null $isCorrectAnswer
      * @return $this
      */
     public function setIsCorrectAnswer($isCorrectAnswer)
