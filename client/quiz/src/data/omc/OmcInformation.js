@@ -4,6 +4,7 @@ export default class OmcInformation extends OmcAbstract {
     static className = 'OmcInformation';
 
     submit_info_api = "/V1/student";
+    submit_answer_api = "/V1/student/submit";
 
     /**
      *
@@ -21,15 +22,13 @@ export default class OmcInformation extends OmcAbstract {
 
     submitAnswer(student, isCorrectAnswer) {
         let params = {
-            id: student.id,
-            isCorrectAnswer: isCorrectAnswer
+            answer: {
+                id: student.id,
+                isCorrectAnswer: isCorrectAnswer
+            }
         };
 
-        if (isCorrectAnswer) student.barcode = '01314415';
-        student.is_answer = true;
-        return new Promise((resolve) => setTimeout(() => resolve(student), 200));
-
-        let url = this.getBaseUrl() + this.submit_info_api;
+        let url = this.getBaseUrl() + this.submit_answer_api;
         return this.post(url, params);
     }
 }
