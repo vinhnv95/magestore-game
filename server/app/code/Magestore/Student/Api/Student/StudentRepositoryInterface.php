@@ -20,4 +20,22 @@ interface StudentRepositoryInterface {
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(StudentInterface $student);
+
+    /**
+     * Retrieve item.
+     *
+     * @param int $id
+     * @return StudentInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getById($id);
+
+    /**
+     * Retrieve item.
+     *
+     * @param string $email
+     * @return StudentInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getByEmail($email);
 }
