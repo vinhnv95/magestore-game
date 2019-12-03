@@ -28,6 +28,8 @@ export class Information extends CoreComponent {
                 birthday: "",
                 grade: "",
                 faculty: "",
+                gpa: "",
+                programing_language: "",
                 level: QuestionConstant.LEVEL_BEGINER
             },
             isMissingData: false,
@@ -160,6 +162,28 @@ export class Information extends CoreComponent {
                                        className="form-control"
                                        placeholder='Công nghệ thông tin'
                                        ref="faculty"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>GPA ở kì gần nhất của bạn</span></label>
+                                <input id="gpa"
+                                       name="gpa"
+                                       className="form-control"
+                                       placeholder="4.0"
+                                       ref="gpa"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Bạn biết các ngôn ngữ lập trình web nào</span></label>
+                                <input id="programing_language"
+                                       name="programing_language"
+                                       className="form-control"
+                                       placeholder="PHP, ReactJS..."
+                                       ref="programing_language"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />

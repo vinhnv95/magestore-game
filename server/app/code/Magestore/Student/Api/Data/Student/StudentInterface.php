@@ -21,6 +21,8 @@ interface StudentInterface
     const IS_ANSWER = 'is_answer';
     const BARCODE = 'barcode';
     const LEVEL = 'level';
+    const GPA = 'gpa';
+    const PROGRAMING_LANGUAGE = 'programing_language';
 
     /**
      * Get Id
@@ -171,4 +173,34 @@ interface StudentInterface
      * @return $this
      */
     public function setLevel($level);
+
+    /**
+     * Get GPA
+     *
+     * @return string|null
+     */
+    public function getGpa();
+
+    /**
+     * Set GPA
+     *
+     * @param string|null $gpa
+     * @return $this
+     */
+    public function setGpa($gpa);
+
+    /**
+     * Get Programing Language
+     *
+     * @return string|null
+     */
+    public function getProgramingLanguage();
+
+    /**
+     * Set Programing Language
+     *
+     * @param string|null $programing_language
+     * @return $this
+     */
+    public function setProgramingLanguage($programing_language);
 }

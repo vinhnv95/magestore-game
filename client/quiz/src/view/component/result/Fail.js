@@ -15,6 +15,7 @@ export class Fail extends CoreComponent {
     }
 
     template() {
+        if (!this.props.student) return null;
         return (
             <Fragment>
                 <div className="container text-center">

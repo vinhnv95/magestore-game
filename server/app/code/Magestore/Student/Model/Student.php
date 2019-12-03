@@ -231,4 +231,46 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     {
         return $this->setData(self::LEVEL, $level);
     }
+
+    /**
+     * Get GPA
+     *
+     * @return string|null
+     */
+    public function getGpa()
+    {
+        return $this->getData(self::GPA);
+    }
+
+    /**
+     * Set GPA
+     *
+     * @param string|null $gpa
+     * @return $this
+     */
+    public function setGpa($gpa)
+    {
+        return $this->setData(self::GPA, $gpa);
+    }
+
+    /**
+     * Get Programing Language
+     *
+     * @return string|null
+     */
+    public function getProgramingLanguage()
+    {
+        return $this->getData(self::PROGRAMING_LANGUAGE);
+    }
+
+    /**
+     * Set Programing Language
+     *
+     * @param string|null $programing_language
+     * @return $this
+     */
+    public function setProgramingLanguage($programing_language)
+    {
+        return $this->setData(self::PROGRAMING_LANGUAGE, $programing_language);
+    }
 }
