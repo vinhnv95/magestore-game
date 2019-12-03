@@ -48,10 +48,10 @@ export class Question extends CoreComponent {
         if (response.ok) {
             response.json().then(async function (data) {
                 let questionList = [];
-                for (let i = 1; i < 2; i++) {
-                    let answerType = "text";
-                    if (typeof data.values[i][1] !== 'undefined' && data.values[i][1] === "select") {
-                        answerType = "select";
+                for (let i = 1; i < data.values.length; i++) {
+                    let answerType = "";
+                    if (typeof data.values[i][1] !== 'undefined') {
+                        answerType = data.values[i][1];
                     }
                     let choice = {};
                     let choiceIndex = 1;
@@ -67,7 +67,7 @@ export class Question extends CoreComponent {
                             "answers": choice,
                             "correctAnswer": correctAnswer
                         });
-                    } else {
+                    } else if (answerType === "text") {
                         questionList.push({
                             "question": data.values[i][2],
                             "answerType": answerType,
