@@ -44,7 +44,7 @@ export class Success extends CoreComponent {
                             <h4>Bạn đã nhận quà rồi!</h4>
                             :
                             <button type="button"
-                                    className="btn btn-default btn-warning"
+                                    className="btn btn-default btn-warning button-submit"
                                     onClick={() => this.getPresent()}>
                                 Xác nhận đã nhận quà
                             </button>
@@ -52,7 +52,7 @@ export class Success extends CoreComponent {
                     <br/>
                     <br/>
                     <button type="button"
-                            className="btn btn-default btn-danger"
+                            className="btn btn-default btn-danger button-full-width"
                             onClick={() => this.clearCache()}>
                         Xóa Cache (Để người khác chơi)
                     </button>

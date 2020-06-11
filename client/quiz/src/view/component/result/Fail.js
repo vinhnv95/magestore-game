@@ -36,7 +36,7 @@ export class Fail extends CoreComponent {
                     <h4>Thời gian chơi: {this.props.student.time} giây</h4>
                     <br/>
                     <button type="button"
-                            className="btn btn-default btn-warning"
+                            className="btn btn-default btn-warning button-submit"
                             onClick={() => this.clearCache()}>Xóa Cache (Để người khác chơi)
                     </button>
                 </div>

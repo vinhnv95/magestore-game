@@ -132,3 +132,6 @@
 .logo img {
     margin-bottom: 40px;
 }
+.button-full-width {
+    width: 100%;
+}
