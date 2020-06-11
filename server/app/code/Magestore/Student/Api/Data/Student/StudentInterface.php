@@ -14,15 +14,10 @@ interface StudentInterface
     const ID = 'id';
     const NAME = 'name';
     const EMAIL = 'email';
-    const PHONE = 'phone';
-    const BIRTHDAY = 'birthday';
-    const GRADE = 'grade';
-    const FACULTY = 'faculty';
+    const MSSV = 'mssv';
     const IS_ANSWER = 'is_answer';
     const BARCODE = 'barcode';
     const LEVEL = 'level';
-    const GPA = 'gpa';
-    const PROGRAMING_LANGUAGE = 'programing_language';
     const TIME = 'time';
     const HAS_TAKEN_THE_GIFT = 'has_taken_the_gift';
 
@@ -66,70 +61,25 @@ interface StudentInterface
     /**
      * Set Email
      *
-     * @param string|null $description
+     * @param string|null $email
      * @return $this
      */
     public function setEmail($email);
 
     /**
-     * Get Phone
+     * Get MSSV
      *
      * @return string|null
      */
-    public function getPhone();
+    public function getMssv();
 
     /**
-     * Set Phone
+     * Set Email
      *
-     * @param string|null $phone
+     * @param string|null $mssv
      * @return $this
      */
-    public function setPhone($phone);
-
-    /**
-     * Get Birthday
-     *
-     * @return string|null
-     */
-    public function getBirthday();
-
-    /**
-     * Set Birthday
-     *
-     * @param string|null $birthday
-     * @return $this
-     */
-    public function setBirthday($birthday);
-
-    /**
-     * Get Grade
-     *
-     * @return string|null
-     */
-    public function getGrade();
-
-    /**
-     * Set Grade
-     *
-     * @param string|null $grade
-     * @return $this
-     */
-    public function setGrade($grade);
-
-    /**
-     * Get Faculty
-     *
-     * @return string|null
-     */
-    public function getFaculty();
-
-    /**
-     * Set Faculty
-     *
-     * @param string|null $faculty
-     * @return $this
-     */
-    public function setFaculty($faculty);
+    public function setMssv($mssv);
 
     /**
      * Get Is Answer
@@ -175,36 +125,6 @@ interface StudentInterface
      * @return $this
      */
     public function setLevel($level);
-
-    /**
-     * Get GPA
-     *
-     * @return string|null
-     */
-    public function getGpa();
-
-    /**
-     * Set GPA
-     *
-     * @param string|null $gpa
-     * @return $this
-     */
-    public function setGpa($gpa);
-
-    /**
-     * Get Programing Language
-     *
-     * @return string|null
-     */
-    public function getProgramingLanguage();
-
-    /**
-     * Set Programing Language
-     *
-     * @param string|null $programing_language
-     * @return $this
-     */
-    public function setProgramingLanguage($programing_language);
 
     /**
      * Get Time

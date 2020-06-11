@@ -32,7 +32,7 @@ export class Success extends CoreComponent {
                     <strong className="logo text-center">
                         <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                     </strong>
-                    <h4>{this.props.student.name} - Email: {this.props.student.email}</h4>
+                    <h4>{this.props.student.name} - MSSV: {this.props.student.mssv}</h4>
                     <h4>Chúc mừng bạn, đúng rồi nè!</h4>
                     <img src="src/images/smiley-face.png" alt="" width="300px" height="300px"/>
                     <h4>Hãy đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h4>

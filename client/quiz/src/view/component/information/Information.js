@@ -25,12 +25,7 @@ export class Information extends CoreComponent {
             student: {
                 name: "",
                 email: "",
-                phone: "",
-                birthday: "",
-                grade: "",
-                faculty: "",
-                gpa: "",
-                programing_language: "",
+                mssv: "",
                 level: QuestionConstant.LEVEL_BEGINER
             },
             isMissingData: false,
@@ -124,67 +119,12 @@ export class Information extends CoreComponent {
                                 />
                             </div>
                             <div className="form-group">
-                                <label><span>Số điện thoại</span></label>
-                                <input id="phone"
-                                       name="phone"
+                                <label><span>Mã số sinh viên</span></label>
+                                <input id="mssv"
+                                       name="mssv"
                                        className="form-control"
-                                       placeholder="0123456789"
-                                       ref="phone"
-                                       autoComplete="on"
-                                       onChange={(e) => this.handleInputChange(e)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label><span>Ngày tháng năm sinh</span></label>
-                                <input id="birthday"
-                                       name="birthday"
-                                       className="form-control"
-                                       placeholder='02/12/1998'
-                                       ref="birthday"
-                                       autoComplete="on"
-                                       onChange={(e) => this.handleInputChange(e)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label><span>Bạn thuộc khóa</span></label>
-                                <input id="grade"
-                                       name="grade"
-                                       className="form-control"
-                                       placeholder='K61'
-                                       ref="grade"
-                                       autoComplete="on"
-                                       onChange={(e) => this.handleInputChange(e)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label><span>Bạn ở khoa</span></label>
-                                <input id="faculty"
-                                       name="faculty"
-                                       className="form-control"
-                                       placeholder='Công nghệ thông tin'
-                                       ref="faculty"
-                                       autoComplete="on"
-                                       onChange={(e) => this.handleInputChange(e)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label><span>GPA ở kì gần nhất của bạn</span></label>
-                                <input id="gpa"
-                                       name="gpa"
-                                       className="form-control"
-                                       placeholder="4.0"
-                                       ref="gpa"
-                                       autoComplete="on"
-                                       onChange={(e) => this.handleInputChange(e)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label><span>Bạn biết các ngôn ngữ lập trình web nào</span></label>
-                                <input id="programing_language"
-                                       name="programing_language"
-                                       className="form-control"
-                                       placeholder="PHP, ReactJS..."
-                                       ref="programing_language"
+                                       placeholder='20191234'
+                                       ref="mssv"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />

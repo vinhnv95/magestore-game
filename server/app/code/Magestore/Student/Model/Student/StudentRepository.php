@@ -49,15 +49,13 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
-     * @param StudentInterface $student
-     * @return StudentInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @inheritDoc
      */
     public function save(StudentInterface $student)
     {
         try {
-            if ($student->getEmail()) {
-                $studentModel = $this->getByEmail($student->getEmail());
+            if ($student->getMssv()) {
+                $studentModel = $this->getByMssv($student->getMssv());
                 if ($studentModel->getId()) {
                     return $studentModel;
                 }
@@ -71,7 +69,7 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function getById($id)
     {
@@ -90,11 +88,17 @@ class StudentRepository implements StudentRepositoryInterface
     }
 
     /**
-     * Retrieve item.
-     *
-     * @param string $email
-     * @return StudentInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @inheritDoc
+     */
+    public function getByMssv($mssv)
+    {
+        $model = $this->model;
+        $this->resource->load($model, $mssv, 'mssv');
+        return $model;
+    }
+
+    /**
+     * @inheritDoc
      */
     public function getByEmail($email)
     {

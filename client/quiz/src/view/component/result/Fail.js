@@ -28,7 +28,7 @@ export class Fail extends CoreComponent {
                     <strong className="logo text-center">
                         <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                     </strong>
-                    <h4>{this.props.student.name} - Email: {this.props.student.email}</h4>
+                    <h4>{this.props.student.name} - MSSV: {this.props.student.mssv}</h4>
                     <h4>Tiếc quá, sai rồi bạn ơi!</h4>
                     <img src="src/images/cry-icon-12.jpg" alt="" width="300px" height="300px"/>
                     <h4>Chúc bạn may mắn lần sau (nếu có)!</h4>

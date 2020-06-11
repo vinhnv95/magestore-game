@@ -65,9 +65,7 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     }
 
     /**
-     * Get Email
-     *
-     * @return string|null
+     * @inheritDoc
      */
     public function getEmail()
     {
@@ -75,10 +73,7 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     }
 
     /**
-     * Set Email
-     *
-     * @param string|null $description
-     * @return $this
+     * @inheritDoc
      */
     public function setEmail($email)
     {
@@ -86,87 +81,19 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     }
 
     /**
-     * Get Phone
-     *
-     * @return string|null
+     * @inheritDoc
      */
-    public function getPhone()
+    public function getMssv()
     {
-        return $this->getData(self::PHONE);
+        return $this->getData(self::MSSV);
     }
 
     /**
-     * Set Phone
-     *
-     * @param string|null $phone
-     * @return $this
+     * @inheritDoc
      */
-    public function setPhone($phone)
+    public function setMssv($mssv)
     {
-        return $this->setData(self::PHONE, $phone);
-    }
-
-    /**
-     * Get Birthday
-     *
-     * @return string|null
-     */
-    public function getBirthday()
-    {
-        return $this->getData(self::BIRTHDAY);
-    }
-
-    /**
-     * Set Birthday
-     *
-     * @param string|null $birthday
-     * @return $this
-     */
-    public function setBirthday($birthday)
-    {
-        return $this->setData(self::BIRTHDAY, $birthday);
-    }
-
-    /**
-     * Get Grade
-     *
-     * @return string|null
-     */
-    public function getGrade()
-    {
-        return $this->getData(self::BIRTHDAY);
-    }
-
-    /**
-     * Set Grade
-     *
-     * @param string|null $grade
-     * @return $this
-     */
-    public function setGrade($grade)
-    {
-        return $this->setData(self::GRADE, $grade);
-    }
-
-    /**
-     * Get Faculty
-     *
-     * @return string|null
-     */
-    public function getFaculty()
-    {
-        return $this->getData(self::FACULTY);
-    }
-
-    /**
-     * Set Faculty
-     *
-     * @param string|null $faculty
-     * @return $this
-     */
-    public function setFaculty($faculty)
-    {
-        return $this->setData(self::FACULTY, $faculty);
+        return $this->setData(self::MSSV, $mssv);
     }
 
     /**
@@ -230,48 +157,6 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     public function setLevel($level)
     {
         return $this->setData(self::LEVEL, $level);
-    }
-
-    /**
-     * Get GPA
-     *
-     * @return string|null
-     */
-    public function getGpa()
-    {
-        return $this->getData(self::GPA);
-    }
-
-    /**
-     * Set GPA
-     *
-     * @param string|null $gpa
-     * @return $this
-     */
-    public function setGpa($gpa)
-    {
-        return $this->setData(self::GPA, $gpa);
-    }
-
-    /**
-     * Get Programing Language
-     *
-     * @return string|null
-     */
-    public function getProgramingLanguage()
-    {
-        return $this->getData(self::PROGRAMING_LANGUAGE);
-    }
-
-    /**
-     * Set Programing Language
-     *
-     * @param string|null $programing_language
-     * @return $this
-     */
-    public function setProgramingLanguage($programing_language)
-    {
-        return $this->setData(self::PROGRAMING_LANGUAGE, $programing_language);
     }
 
     /**

@@ -41,6 +41,15 @@ interface StudentRepositoryInterface {
     public function getByEmail($email);
 
     /**
+     * Retrieve item.
+     *
+     * @param string $mssv
+     * @return StudentInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getByMssv($mssv);
+
+    /**
      * Submit
      *
      * @param AnswerInterface $answer
