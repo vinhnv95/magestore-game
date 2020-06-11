@@ -113,33 +113,50 @@ class StudentRepository implements StudentRepositoryInterface
     {
         $studentId = $answer->getId();
         $isAnswerCorrect = $answer->getIsCorrectAnswer();
+        $time = $answer->getTime();
         if ($studentId) {
             $student = $this->getById($studentId);
         }
         if ($isAnswerCorrect) {
-            $level = $student->getLevel();
-            if ($level === 'beginer') {
-                $product = $this->collectionFactory->create()
-                    ->addFieldToFilter('type_id', 'simple')
-                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
-                    ->getFirstItem();
-            } else if ($level === 'junior') {
-                $product = $this->collectionFactory->create()
-                    ->addFieldToFilter('type_id', 'simple')
-                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
-                    ->getFirstItem();
-            } else if ($level === 'expert') {
-                $product = $this->collectionFactory->create()
-                    ->addFieldToFilter('type_id', 'simple')
-                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
-                    ->getFirstItem();
-            }
-            $barcode = $product->getSku();
+//            $level = $student->getLevel();
+//            if ($level === 'beginer') {
+//                $product = $this->collectionFactory->create()
+//                    ->addFieldToFilter('type_id', 'simple')
+//                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_1)
+//                    ->getFirstItem();
+//            } else if ($level === 'junior') {
+//                $product = $this->collectionFactory->create()
+//                    ->addFieldToFilter('type_id', 'simple')
+//                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_2)
+//                    ->getFirstItem();
+//            } else if ($level === 'expert') {
+//                $product = $this->collectionFactory->create()
+//                    ->addFieldToFilter('type_id', 'simple')
+//                    ->addAttributeToFilter('level', \Magestore\Student\Model\Source\Level::LEVEL_3)
+//                    ->getFirstItem();
+//            }
+            $barcode = "SUCCESS";
             $student->setBarcode($barcode);
         } else {
             $student->setBarcode('');
         }
+        if ($time) {
+            $student->setTime($time);
+        }
         $student->setIsAnswer(true);
+        $student->save();
+        return $student;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPresent($id)
+    {
+        if ($id) {
+            $student = $this->getById($id);
+        }
+        $student->setHasTakenTheGift(true);
         $student->save();
         return $student;
     }

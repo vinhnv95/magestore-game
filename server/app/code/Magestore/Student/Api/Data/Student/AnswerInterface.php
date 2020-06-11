@@ -12,6 +12,7 @@ interface AnswerInterface
 {
     const ID = 'id';
     const IS_CORRECT_ANSWER = 'is_correct_answer';
+    const TIME = 'time';
     /**
      * Get Id
      *
@@ -41,4 +42,19 @@ interface AnswerInterface
      * @return $this
      */
     public function setIsCorrectAnswer($isCorrectAnswer);
+
+    /**
+     * Get Name
+     *
+     * @return float|null
+     */
+    public function getTime();
+
+    /**
+     * Set isCorrectAnswer
+     *
+     * @param float $time
+     * @return $this
+     */
+    public function setTime($time);
 }

@@ -5,6 +5,7 @@ export default class OmcInformation extends OmcAbstract {
 
     submit_info_api = "/V1/student";
     submit_answer_api = "/V1/student/submit";
+    submit_get_present_api = "/V1/student/get-present";
 
     /**
      *
@@ -20,15 +21,24 @@ export default class OmcInformation extends OmcAbstract {
         return this.post(url, params);
     }
 
-    submitAnswer(student, isCorrectAnswer) {
+    submitAnswer(student, isCorrectAnswer, time) {
         let params = {
             answer: {
                 id: student.id,
-                isCorrectAnswer: isCorrectAnswer
+                isCorrectAnswer: isCorrectAnswer,
+                time: time
             }
         };
 
         let url = this.getBaseUrl() + this.submit_answer_api;
+        return this.post(url, params);
+    }
+
+    getPresent(id) {
+        let params = {
+            id: id
+        };
+        let url = this.getBaseUrl() + this.submit_get_present_api;
         return this.post(url, params);
     }
 }

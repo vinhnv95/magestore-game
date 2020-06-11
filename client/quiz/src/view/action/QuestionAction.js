@@ -2,9 +2,10 @@ import QuestionConstant from "../constant/QuestionConstant";
 
 export default {
 
-    submitAnswer: (isCorrectAnswer = false) => {
+    submitAnswer: (time, isCorrectAnswer = false) => {
         return {
             type: QuestionConstant.SUBMIT_ANSWER,
+            time: time,
             isCorrectAnswer: isCorrectAnswer
         }
     }

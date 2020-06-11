@@ -3,7 +3,7 @@ import ComponentFactory from "../../../framework/factory/ComponentFactory";
 import CoreContainer from "../../../framework/container/CoreContainer";
 import ContainerFactory from "../../../framework/factory/ContainerFactory";
 import {CoreComponent} from "../../../framework/component";
-import Barcode from "react-barcode";
+import InformationAction from "../../action/InformationAction";
 
 export class Success extends CoreComponent {
     static className = 'Success';
@@ -13,6 +13,15 @@ export class Success extends CoreComponent {
         if (!this.props.student || !this.props.student.barcode) {
             this.props.history.replace('/');
         }
+    }
+
+    clearCache() {
+        this.props.actions.clearCache();
+        setTimeout(() => {this.props.history.replace('/');}, 500);
+    }
+
+    getPresent() {
+        this.props.actions.getPresent(this.props.student.id);
     }
 
     template() {
@@ -25,8 +34,28 @@ export class Success extends CoreComponent {
                     </strong>
                     <h4>{this.props.student.name} - Email: {this.props.student.email}</h4>
                     <h4>Chúc mừng bạn, đúng rồi nè!</h4>
-                    <Barcode value={this.props.student.barcode} />
-                    <h4>Hãy mang barcode này đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h4>
+                    <img src="src/images/smiley-face.png" alt="" width="300px" height="300px"/>
+                    <h4>Hãy đến quầy của Magestore, trải nghiệm dịch vụ self check-out và nhận quà nhé</h4>
+                    <br/>
+                    <h4>Thời gian chơi: {this.props.student.time} giây</h4>
+                    <br/>
+                    {
+                        this.props.student.has_taken_the_gift ?
+                            <h4>Bạn đã nhận quà rồi!</h4>
+                            :
+                            <button type="button"
+                                    className="btn btn-default btn-warning"
+                                    onClick={() => this.getPresent()}>
+                                Xác nhận đã nhận quà
+                            </button>
+                    }
+                    <br/>
+                    <br/>
+                    <button type="button"
+                            className="btn btn-default btn-danger"
+                            onClick={() => this.clearCache()}>
+                        Xóa Cache (Để người khác chơi)
+                    </button>
                 </div>
             </Fragment>
         );
@@ -49,7 +78,10 @@ export class SuccessContainer extends CoreContainer {
      */
     static mapDispatch(dispatch) {
         return {
-            actions: {}
+            actions: {
+                clearCache: () => dispatch(InformationAction.clearCache()),
+                getPresent: (id) => dispatch(InformationAction.getPresent(id))
+            }
         }
     }
 }

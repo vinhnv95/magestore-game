@@ -32,6 +32,25 @@ const informationReducer = function (state = initialState, action) {
                 student: action.student,
                 loading: false
             };
+        case InformationConstant.GET_PRESENT:
+            return {
+                ...state,
+                loading: true
+            };
+        case InformationConstant.GET_PRESENT_RESULT:
+            return {
+                ...state,
+                student: action.student,
+                loading: false
+            };
+        case InformationConstant.CLEAR_CACHE: {
+            LocalStorageHelper.removeStudent()
+            return {
+                ...state,
+                student: null,
+                loading: false
+            };
+        }
         default:
             return state;
     }

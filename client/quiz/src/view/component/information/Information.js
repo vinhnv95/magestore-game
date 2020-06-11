@@ -8,6 +8,7 @@ import QuestionConstant from '../../constant/QuestionConstant';
 
 export class Information extends CoreComponent {
     static className = 'Information';
+    // eslint-disable-next-line
     regexEmail= /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
     /**
@@ -187,18 +188,6 @@ export class Information extends CoreComponent {
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />
-                            </div>
-                            <div className="form-group">
-                                <label>Bạn muốn thử thách ở mức câu hỏi: <i>độ khủng của các món quà sẽ tăng dần theo các cấp câu hỏi</i></label>
-                                <select id="level"
-                                        name="level"
-                                        className="form-control"
-                                        onChange={(e) => this.handleInputChange(e)}
-                                        defaultValue={this.state.student.level}>
-                                    <option value={QuestionConstant.LEVEL_BEGINER}>Beginer</option>
-                                    <option value={QuestionConstant.LEVEL_JUNIOR}>Junior</option>
-                                    <option value={QuestionConstant.LEVEL_EXPERT}>Expert</option>
-                                </select>
                             </div>
                             <div className="form-group text-center">
                                 <button type="button"

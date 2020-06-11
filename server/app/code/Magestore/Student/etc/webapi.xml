@@ -20,4 +20,11 @@
             <resource ref="anonymous" />
         </resources>
     </route>
+
+    <route url="/V1/student/get-present" method="POST">
+        <service class="Magestore\Student\Api\Student\StudentRepositoryInterface" method="getPresent"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
 </routes>

@@ -18,13 +18,22 @@ const submitInfo = action$ => action$.ofType(InformationConstant.SUBMIT_INFO)
         }).catch(error => Observable.empty())
     );
 
+const getPresent = action$ => action$.ofType(InformationConstant.GET_PRESENT)
+    .mergeMap(action => Observable.from(InformationService.getPresent(action.id))
+        .map((response) => {
+            LocalStorageHelper.setStudent(response);
+            return InformationAction.getPresentResult(response);
+        }).catch(error => Observable.empty())
+    );
+
 /**
  * export combine epics
  *
  * @type {Epic<Action, any, any, Action> | (function(*): Observable<any>)}
  */
 export const informationEpic = combineEpics(
-    submitInfo
+    submitInfo,
+    getPresent
 );
 
 export default informationEpic;

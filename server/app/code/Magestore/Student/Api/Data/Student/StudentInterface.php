@@ -23,6 +23,8 @@ interface StudentInterface
     const LEVEL = 'level';
     const GPA = 'gpa';
     const PROGRAMING_LANGUAGE = 'programing_language';
+    const TIME = 'time';
+    const HAS_TAKEN_THE_GIFT = 'has_taken_the_gift';
 
     /**
      * Get Id
@@ -132,7 +134,7 @@ interface StudentInterface
     /**
      * Get Is Answer
      *
-     * @return string|null
+     * @return boolean|int|null
      */
     public function getIsAnswer();
 
@@ -203,4 +205,34 @@ interface StudentInterface
      * @return $this
      */
     public function setProgramingLanguage($programing_language);
+
+    /**
+     * Get Time
+     *
+     * @return float|null
+     */
+    public function getTime();
+
+    /**
+     * Set Time
+     *
+     * @param float $time
+     * @return $this
+     */
+    public function setTime($time);
+
+    /**
+     * Get Has Taken The Gift
+     *
+     * @return boolean|int|null
+     */
+    public function getHasTakenTheGift();
+
+    /**
+     * Set Has Taken The Gift
+     *
+     * @param boolean|null $hasTakenTheGift
+     * @return $this
+     */
+    public function setHasTakenTheGift($hasTakenTheGift);
 }

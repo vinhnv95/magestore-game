@@ -21,6 +21,8 @@
         <column xsi:type="boolean" name="is_answer" nullable="false" default="false" comment="Is Answer"/>
         <column xsi:type="varchar" name="barcode" nullable="false" length="32" default="" comment="Barcode"/>
         <column xsi:type="varchar" name="level" nullable="false" length="10" default="" comment="Level"/>
+        <column xsi:type="decimal" name="time" nullable="true" scale="4" precision="12" comment="Play Time"/>
+        <column xsi:type="boolean" name="has_taken_the_gift" nullable="false" default="false" comment="Has Taken The Gift"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

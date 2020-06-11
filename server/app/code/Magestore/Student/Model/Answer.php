@@ -53,4 +53,20 @@ class Answer extends \Magento\Framework\DataObject implements AnswerInterface
     {
         return $this->setData(self::IS_CORRECT_ANSWER, $isCorrectAnswer);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTime()
+    {
+        return $this->getData(self::TIME);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setTime($time)
+    {
+        return $this->setData(self::TIME, $time);
+    }
 }

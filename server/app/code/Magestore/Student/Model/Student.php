@@ -273,4 +273,36 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     {
         return $this->setData(self::PROGRAMING_LANGUAGE, $programing_language);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTime()
+    {
+        return $this->getData(self::TIME);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setTime($time)
+    {
+        return $this->setData(self::TIME, $time);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getHasTakenTheGift()
+    {
+        return $this->getData(self::HAS_TAKEN_THE_GIFT);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setHasTakenTheGift($hasTakenTheGift)
+    {
+        return $this->setData(self::HAS_TAKEN_THE_GIFT, $hasTakenTheGift);
+    }
 }

@@ -26,5 +26,25 @@ export default {
             student: student
         }
     },
+
+    clearCache: () => {
+        return {
+            type: InformationConstant.CLEAR_CACHE
+        }
+    },
+
+    getPresent: (id) => {
+        return {
+            type: InformationConstant.GET_PRESENT,
+            id: id
+        }
+    },
+
+    getPresentResult: (student) => {
+        return {
+            type: InformationConstant.GET_PRESENT_RESULT,
+            student: student
+        }
+    }
 }
 

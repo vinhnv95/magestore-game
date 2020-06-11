@@ -19,8 +19,12 @@ export class InformationService extends CoreService{
         return this.getResourceModel().submitInfo(student);
     }
 
-    submitAnswer(student, isCorrectAnswer) {
-        return this.getResourceModel().submitAnswer(student, isCorrectAnswer);
+    submitAnswer(student, isCorrectAnswer, time) {
+        return this.getResourceModel().submitAnswer(student, isCorrectAnswer, time);
+    }
+
+    getPresent(id) {
+        return this.getResourceModel().getPresent(id);
     }
 }
 

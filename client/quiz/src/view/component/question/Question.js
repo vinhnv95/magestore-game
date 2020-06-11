@@ -24,65 +24,30 @@ export class Question extends CoreComponent {
             let path = props.student.barcode ? '/success' : '/fail';
             this.props.history.replace(path);
         }
-        let level = props.student && props.student.level ? props.student.level : QuestionConstant.LEVEL_BEGINER;
         this.state = {
-            question: {
-                "question": null,
-                "answerType": "select",
-                "answers": {},
-                "correctAnswer": null
-            },
-            userAnswer: null
+            questions: [],
+            startTime: null
         };
-        this.getRandomQuestion(level);
+        this.getRandomQuestion();
     }
 
     /**
      *
-     * @param level
      * @returns {Promise<*>}
      */
-    async getRandomQuestion(level) {
-        let response = await QuestionHelper.getRandomQuestion(level);
-        let self = this;
-        if (response.ok) {
-            response.json().then(async function (data) {
-                let questionList = [];
-                for (let i = 1; i < data.values.length; i++) {
-                    let answerType = "";
-                    if (typeof data.values[i][1] !== 'undefined') {
-                        answerType = data.values[i][1];
-                    }
-                    let choice = {};
-                    let choiceIndex = 1;
-                    let correctAnswer = data.values[i][3].toString().trim();
-                    for (let index = 4; index < data.values[i].length; index++) {
-                        choice[choiceIndex] = data.values[i][index].toString().trim();
-                        choiceIndex++;
-                    }
-                    if (answerType === "select") {
-                        questionList.push({
-                            "question": data.values[i][2],
-                            "answerType": answerType,
-                            "answers": choice,
-                            "correctAnswer": correctAnswer
-                        });
-                    } else if (answerType === "text") {
-                        questionList.push({
-                            "question": data.values[i][2],
-                            "answerType": answerType,
-                            "answers": null,
-                            "correctAnswer": correctAnswer
-                        });
-                    }
-                    let index = Math.floor(Math.random() * questionList.length);
-                    self.setState({
-                        question: questionList[index],
-                        userAnswer: null
-                    });
-                }
-            });
+    async getRandomQuestion() {
+        let questions = [];
+        let beginerData = await QuestionHelper.getRandomQuestion(QuestionConstant.LEVEL_BEGINER);
+        let juniorData = await QuestionHelper.getRandomQuestion(QuestionConstant.LEVEL_JUNIOR);
+        if (beginerData.length && juniorData.length) {
+            let random1 = beginerData.sort(() => 0.5 - Math.random()).slice(0,3);
+            let random2 = juniorData.sort(() => 0.5 - Math.random()).slice(0,2);
+            questions = [...random1, ...random2];
         }
+        this.setState({
+            questions: questions,
+            startTime: Date.now()
+        });
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -92,15 +57,36 @@ export class Question extends CoreComponent {
         }
     }
 
-    submit() {
-        if (!this.state.userAnswer) return;
-        let isCorrectAnswer = this.state.userAnswer.toString().toLocaleLowerCase() === this.state.question.correctAnswer.toString().toLocaleLowerCase();
-        this.props.actions.submitAnswer(isCorrectAnswer);
+    hasEmptyAnswers() {
+        for (let i = 0; i < this.state.questions.length; i++) {
+            if (!this.state.questions[i].userAnswer) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    changeAnswer(x) {
+    isCorrectAnswer() {
+        let isCorrectAnswer = true;
+        this.state.questions.forEach(question => {
+            if (question.userAnswer.toString().toLocaleLowerCase() !== question.correctAnswer.toString().toLocaleLowerCase()) {
+                isCorrectAnswer = false;
+            }
+        });
+        return isCorrectAnswer;
+    }
+
+    submit() {
+        if (this.hasEmptyAnswers()) return;
+        let seconds = (Date.now() - this.state.startTime) / 1000;
+        this.props.actions.submitAnswer(seconds, this.isCorrectAnswer());
+    }
+
+    changeAnswer(questionIndex, value) {
+        let questions = this.state.questions;
+        questions[questionIndex].userAnswer = value.toString().trim();
         this.setState({
-            userAnswer: x.toString().trim()
+            questions: questions
         })
     }
 
@@ -115,32 +101,39 @@ export class Question extends CoreComponent {
                                     <a href=""><img width={'204.8px'} height={'49.4px'} src={this.props.logoUrl} alt=""/></a>
                                 </strong>
                             </div>
-                            <div className="form-group">
-                                <label>{this.state.question.question}</label>
-                                <div>
-                                    {
-                                        this.state.question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
-                                            Object.keys(this.state.question.answers).map(key => {
-                                                let value = this.state.question.answers[key];
-                                                return (
-                                                    <Fragment key={key}>
-                                                        <input type="radio"
-                                                               name="answer"
-                                                               value={value}
-                                                               checked={this.state.userAnswer === value}
-                                                               onChange={() => this.changeAnswer(value)}
-                                                        /> {value}<br/>
-                                                    </Fragment>
-                                                );
-                                            })
-                                            :
-                                            <input type="text"
-                                                   className="form-control"
-                                                   onChange={(e) => this.changeAnswer(e.target.value)}
-                                            />
-                                    }
-                                </div>
-                            </div>
+                            {
+                                this.state.questions.map((question, index) => {
+                                    return (
+                                        <div className="form-group" key={index}>
+                                            <label>{question.question}</label>
+                                            <div>
+                                                {
+                                                    question.answerType === QuestionConstant.ANSWER_TYPE_SELECT ?
+                                                        Object.keys(question.answers).map(key => {
+                                                            let value = question.answers[key];
+                                                            return (
+                                                                <Fragment key={index + '-' + key}>
+                                                                    <input type="radio"
+                                                                           name={"answer" + index + key}
+                                                                           value={value}
+                                                                           checked={question.userAnswer === value}
+                                                                           onChange={() => this.changeAnswer(index, value)}
+                                                                    /> {value}<br/>
+                                                                </Fragment>
+                                                            );
+                                                        })
+                                                        :
+                                                        <input type="text"
+                                                               className="form-control"
+                                                               onChange={(e) => this.changeAnswer(index, e.target.value)}
+                                                        />
+                                                }
+                                            </div>
+                                            <br/>
+                                        </div>
+                                    )
+                                })
+                            }
                             <div className="form-group">
                                 <button type="button"
                                         className="btn btn-default btn-warning button-submit"
@@ -173,7 +166,7 @@ export class QuestionContainer extends CoreContainer {
     static mapDispatch(dispatch) {
         return {
             actions: {
-                submitAnswer: (isCorrectAnswer) => dispatch(QuestionAction.submitAnswer(isCorrectAnswer))
+                submitAnswer: (time, isCorrectAnswer) => dispatch(QuestionAction.submitAnswer(time, isCorrectAnswer))
             }
         }
     }

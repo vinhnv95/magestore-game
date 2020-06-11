@@ -13,7 +13,7 @@ import QuestionConstant from '../constant/QuestionConstant';
 const submitAnswer = (action$, store) => action$.ofType(QuestionConstant.SUBMIT_ANSWER)
     .mergeMap(action => {
         let student = store.getState().core.information.student;
-        return Observable.from(InformationService.submitAnswer(student, action.isCorrectAnswer))
+        return Observable.from(InformationService.submitAnswer(student, action.isCorrectAnswer, action.time))
             .map((response) => {
                 LocalStorageHelper.setStudent(response);
                 return InformationAction.submitInfoResult(response);

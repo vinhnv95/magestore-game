@@ -47,4 +47,12 @@ interface StudentRepositoryInterface {
      * @return StudentInterface
      */
     public function submit($answer);
+
+    /**
+     * Get Present
+     *
+     * @param int $id
+     * @return StudentInterface
+     */
+    public function getPresent($id);
 }
