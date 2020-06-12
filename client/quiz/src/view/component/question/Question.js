@@ -138,7 +138,7 @@ export class Question extends CoreComponent {
                                 <button type="button"
                                         className="btn btn-default btn-warning button-submit"
                                         ref="submitButton"
-                                        onClick={() => this.submit()}>CHẮC CHẮN
+                                        onClick={() => this.submit()}>Submit
                                 </button>
                             </div>
                         </div>
