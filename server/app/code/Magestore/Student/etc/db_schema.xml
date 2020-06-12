@@ -13,6 +13,7 @@
         <column xsi:type="varchar" name="name" nullable="false" length="32" default="" comment="Name"/>
         <column xsi:type="varchar" name="email" nullable="false" length="32" default="" comment="Email"/>
         <column xsi:type="varchar" name="mssv" nullable="false" length="32" default="" comment="MSSV"/>
+        <column xsi:type="varchar" name="phone" nullable="false" length="32" default="" comment="Phone"/>
         <column xsi:type="boolean" name="is_answer" nullable="false" default="false" comment="Is Answer"/>
         <column xsi:type="varchar" name="barcode" nullable="false" length="32" default="" comment="Barcode"/>
         <column xsi:type="varchar" name="level" nullable="false" length="10" default="" comment="Level"/>

@@ -26,6 +26,7 @@ export class Information extends CoreComponent {
                 name: "",
                 email: "",
                 mssv: "",
+                phone: "",
                 level: QuestionConstant.LEVEL_BEGINER
             },
             isMissingData: false,
@@ -125,6 +126,17 @@ export class Information extends CoreComponent {
                                        className="form-control"
                                        placeholder='20191234'
                                        ref="mssv"
+                                       autoComplete="on"
+                                       onChange={(e) => this.handleInputChange(e)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label><span>Số điện thoại</span></label>
+                                <input id="phone"
+                                       name="phone"
+                                       className="form-control"
+                                       placeholder="0123456789"
+                                       ref="phone"
                                        autoComplete="on"
                                        onChange={(e) => this.handleInputChange(e)}
                                 />

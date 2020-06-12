@@ -15,6 +15,7 @@ interface StudentInterface
     const NAME = 'name';
     const EMAIL = 'email';
     const MSSV = 'mssv';
+    const PHONE = 'phone';
     const IS_ANSWER = 'is_answer';
     const BARCODE = 'barcode';
     const LEVEL = 'level';
@@ -65,6 +66,21 @@ interface StudentInterface
      * @return $this
      */
     public function setEmail($email);
+
+    /**
+     * Get Phone
+     *
+     * @return string|null
+     */
+    public function getPhone();
+
+    /**
+     * Set Phone
+     *
+     * @param string|null $phone
+     * @return $this
+     */
+    public function setPhone($phone);
 
     /**
      * Get MSSV

@@ -83,6 +83,22 @@ class Student extends \Magento\Framework\Model\AbstractModel implements StudentI
     /**
      * @inheritDoc
      */
+    public function getPhone()
+    {
+        return $this->getData(self::PHONE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPhone($phone)
+    {
+        return $this->setData(self::PHONE, $phone);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getMssv()
     {
         return $this->getData(self::MSSV);
