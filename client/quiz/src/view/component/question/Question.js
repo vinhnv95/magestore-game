@@ -134,13 +134,19 @@ export class Question extends CoreComponent {
                                     )
                                 })
                             }
-                            <div className="form-group">
-                                <button type="button"
-                                        className="btn btn-default btn-warning button-submit"
-                                        ref="submitButton"
-                                        onClick={() => this.submit()}>Submit
-                                </button>
-                            </div>
+                            {
+                                this.state.questions.length ?
+                                    <div className="form-group">
+                                        <button type="button"
+                                                className="btn btn-default btn-warning button-submit"
+                                                ref="submitButton"
+                                                onClick={() => this.submit()}>Submit
+                                        </button>
+                                    </div>
+                                    :
+                                    <p>Please wait!</p>
+                            }
+
                         </div>
                     </form>
                 </div>
